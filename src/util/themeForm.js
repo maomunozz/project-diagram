@@ -3,7 +3,7 @@ export default {
     textAlign: "center"
   },
   image: {
-    margin: "20px auto 20px auto"
+    margin: "20px auto 10px auto"
   },
   pageTitle: {
     margin: "10px auto 10px auto"
@@ -13,7 +13,8 @@ export default {
   },
   button: {
     marginTop: 20,
-    position: "relative"
+    position: "relative",
+    marginBottom: 10
   },
   customError: {
     color: "red",

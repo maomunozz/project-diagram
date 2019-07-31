@@ -13,7 +13,6 @@ class home extends Component {
     axios
       .get("/projects")
       .then(response => {
-        console.log(response.data);
         this.setState({
           projects: response.data
         });
