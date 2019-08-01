@@ -3,7 +3,6 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import locale from "dayjs/locale/es";
-
 //MUI
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -13,13 +12,14 @@ import Typography from "@material-ui/core/Typography";
 const styles = {
   card: {
     display: "flex",
-    marginBottom: 20
+    marginBottom: 20,
+    minWidth: 100
   },
   image: {
-    minWidth: 200
+    minWidth: 100
   },
   content: {
-    padding: 25,
+    padding: 20,
     objectFit: "cover"
   }
 };
@@ -48,11 +48,11 @@ class Project extends Component {
           className={classes.image}
         />
         <CardContent className={classes.content}>
-          <Typography variant="body1" color="textSecondary">
+          <Typography variant="body2" color="textSecondary">
             {dayjs(createdAt).fromNow()}
           </Typography>
           <Typography variant="h5">{title}</Typography>
-          <Typography variant="body2">{description}</Typography>
+          <Typography variant="body1">{description}</Typography>
         </CardContent>
       </Card>
     );
