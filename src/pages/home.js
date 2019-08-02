@@ -1,29 +1,22 @@
 import React, { Component } from "react";
-import axios from "axios";
+import PropTypes from "prop-types";
+//MUI
 import Grid from "@material-ui/core/Grid";
 //Components
 import Project from "../components/Project";
 import Profile from "../components/Profile";
+//Redux
+import { connect } from "react-redux";
+import { getProjects } from "../redux/actions/dataActions";
 
 class home extends Component {
-  state = {
-    projects: null
-  };
   componentDidMount() {
-    axios
-      .get("/projects")
-      .then(response => {
-        this.setState({
-          projects: response.data
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.props.getProjects();
   }
   render() {
-    let recentProjectsMarkup = this.state.projects ? (
-      this.state.projects.map(project => (
+    const { projects, loading } = this.props.data;
+    let recentProjectsMarkup = !loading ? (
+      projects.map(project => (
         <Project project={project} key={project.projectId} />
       ))
     ) : (
@@ -42,4 +35,16 @@ class home extends Component {
   }
 }
 
-export default home;
+home.propTypes = {
+  getProjects: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  data: state.data
+});
+
+export default connect(
+  mapStateToProps,
+  { getProjects }
+)(home);

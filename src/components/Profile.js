@@ -6,10 +6,9 @@ import dayjs from "dayjs";
 import locale from "dayjs/locale/es";
 //Components
 import EditDetails from "./EditDetails";
+import CustomButton from "../util/CustomButton";
 //MUI
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import Tooltip from "@material-ui/core/Tooltip";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import MuiLink from "@material-ui/core/Link";
@@ -62,9 +61,6 @@ class Profile extends Component {
       }
     } = this.props;
 
-    console.log(authenticated);
-    console.log(loading);
-
     let profileMarkup = !loading ? (
       authenticated ? (
         <Paper className={classes.paper}>
@@ -77,11 +73,14 @@ class Profile extends Component {
                 hidden="hidden"
                 onChange={this.handleImageChange}
               />
-              <Tooltip title="Editar foto de perfil" placement="top">
-                <IconButton onClick={this.handleEditPicture} className="button">
-                  <EditIcon color="primary" />
-                </IconButton>
-              </Tooltip>
+              <CustomButton
+                tip="Editar foto de perfil"
+                onClick={this.handleEditPicture}
+                btnClassName="button"
+                placement="top"
+              >
+                <EditIcon color="primary" />
+              </CustomButton>
             </div>
             <hr />
             <div className="profile-details">
@@ -115,11 +114,13 @@ class Profile extends Component {
               <CalendarToday color="primary" />{" "}
               <span>Se unió en {dayjs(createdAt).format("MMM YYYY")}</span>
             </div>
-            <Tooltip title="Logout" placement="top">
-              <IconButton onClick={this.handleLogout}>
-                <KeyboardReturn color="primary" />
-              </IconButton>
-            </Tooltip>
+            <CustomButton
+              tip="Logout"
+              onClick={this.handleLogout}
+              placement="top"
+            >
+              <KeyboardReturn color="primary" />
+            </CustomButton>
             <EditDetails />
           </div>
         </Paper>

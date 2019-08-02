@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import withStyles from "@material-ui/core/styles/withStyles";
+import PropTypes from "prop-types";
+//Components
+import CustomButton from "../util/CustomButton";
+import DeleteProject from "../components/DeleteProject";
+//Dayjs
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import locale from "dayjs/locale/es";
@@ -8,18 +12,23 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
+import withStyles from "@material-ui/core/styles/withStyles";
+//Icons
+import ChatIcon from "@material-ui/icons/Chat";
+//Redux
+import { connect } from "react-redux";
 
 const styles = {
   card: {
+    position: "relative",
     display: "flex",
-    marginBottom: 20,
-    minWidth: 100
+    marginBottom: 20
   },
   image: {
     minWidth: 100
   },
   content: {
-    padding: 20,
+    padding: 25,
     objectFit: "cover"
   }
 };
@@ -32,14 +41,24 @@ class Project extends Component {
       classes,
       project: {
         title,
-        objective,
+        //objective,
         createdAt,
         userImage,
         description,
         projectId,
-        commentCount
+        commentCount,
+        projectUserId
+      },
+      user: {
+        authenticated,
+        credentials: { userId }
       }
     } = this.props;
+
+    const deleteButton =
+      authenticated && projectUserId === userId ? (
+        <DeleteProject projectId={projectId} />
+      ) : null;
     return (
       <Card className={classes.card}>
         <CardMedia
@@ -51,12 +70,32 @@ class Project extends Component {
           <Typography variant="body2" color="textSecondary">
             {dayjs(createdAt).fromNow()}
           </Typography>
+          {deleteButton}
           <Typography variant="h5">{title}</Typography>
           <Typography variant="body1">{description}</Typography>
+          <CustomButton tip="comentarios">
+            <ChatIcon color="primary" />
+          </CustomButton>
+          <span>{commentCount} comentarios</span>
         </CardContent>
       </Card>
     );
   }
 }
 
-export default withStyles(styles)(Project);
+Project.propTypes = {
+  user: PropTypes.object.isRequired,
+  project: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+const mapActionsToProps = {};
+
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(withStyles(styles)(Project));
