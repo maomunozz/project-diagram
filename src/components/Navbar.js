@@ -4,12 +4,12 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 //Components
 import CustomButton from "../util/CustomButton";
+import CreateProject from "./CreateProject"
 //MUI
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 //Icons
-import AddIcon from "@material-ui/icons/Add";
 import HomeIcon from "@material-ui/icons/Home";
 //import NotificationIcon from "@material-ui/icons/Notifications";
 
@@ -21,9 +21,7 @@ class Navbar extends Component {
         <Toolbar className="nav-container">
           {authenticated ? (
             <>
-              <CustomButton tip="Nuevo Proyecto">
-                <AddIcon />
-              </CustomButton>
+              <CreateProject />
               <Link to="/">
                 <CustomButton tip="Home">
                   <HomeIcon />

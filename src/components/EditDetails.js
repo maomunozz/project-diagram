@@ -80,7 +80,7 @@ class EditDetails extends Component {
         </CustomButton>
         <Dialog
           open={this.state.open}
-          onCLose={this.handleCLose}
+          onClose={this.handleCLose}
           fullWidth
           //maxWith="sm"
         >

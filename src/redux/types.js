@@ -12,3 +12,5 @@ export const LOADING_USER = "LOADING_USER";
 export const SET_PROJECTS = "SET_PROJECTS";
 export const SET_PROJECT = "SET_PROJECT";
 export const DELETE_PROJECT = "DELETE_PROJECT";
+export const CREATE_PROJECT = "CREATE_PROJECT";
+export const GET_OBSERVERS = "GET_OBSERVERS";
