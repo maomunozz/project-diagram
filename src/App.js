@@ -5,6 +5,7 @@ import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import { generalTheme } from "./util/theme";
 import jwtDecode from "jwt-decode";
+import axios from "axios";
 //Redux
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -14,10 +15,10 @@ import { logoutUser, getUserData } from "./redux/actions/userActions";
 import Navbar from "./components/Navbar";
 import AuthRoute from "./util/AuthRoute";
 //Pages
-import home from "./pages/home";
+import dashboard from "./pages/dashboard";
 import login from "./pages/login";
 import signup from "./pages/signup";
-import axios from "axios";
+import home from "./pages/home";
 
 const theme = createMuiTheme(generalTheme);
 
@@ -44,8 +45,9 @@ class App extends Component {
             <div className="container">
               <Switch>
                 <Route exact path="/" component={home} />
-                <AuthRoute exact path="/login" component={login} />
-                <AuthRoute exact path="/signup" component={signup} />
+                <Route exact path="/login" component={login} />
+                <Route exact path="/signup" component={signup} />
+                <AuthRoute exact path="/dashboard" component={dashboard} />
               </Switch>
             </div>
           </BrowserRouter>

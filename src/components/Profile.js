@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import MuiLink from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
 //Icons
 import LocationOn from "@material-ui/icons/LocationOn";
 import Email from "@material-ui/icons/Email";
@@ -114,13 +115,15 @@ class Profile extends Component {
               <CalendarToday color="primary" />{" "}
               <span>Se unió en {dayjs(createdAt).format("MMM YYYY")}</span>
             </div>
-            <CustomButton
-              tip="Logout"
-              onClick={this.handleLogout}
-              placement="top"
-            >
-              <KeyboardReturn color="primary" />
-            </CustomButton>
+            <Link to="/">
+              <CustomButton
+                tip="Logout"
+                onClick={this.handleLogout}
+                placement="top"
+              >
+                <KeyboardReturn color="primary" />
+              </CustomButton>
+            </Link>
             <EditDetails />
           </div>
         </Paper>

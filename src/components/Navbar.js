@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 //Components
 import CustomButton from "../util/CustomButton";
-import CreateProject from "./CreateProject"
+import CreateProject from "./CreateProject";
 //MUI
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -22,7 +22,7 @@ class Navbar extends Component {
           {authenticated ? (
             <>
               <CreateProject />
-              <Link to="/">
+              <Link to="/dashboard">
                 <CustomButton tip="Home">
                   <HomeIcon />
                 </CustomButton>

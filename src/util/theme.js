@@ -18,7 +18,8 @@ export const generalTheme = {
       useNextVariants: true
     },
     form: {
-      textAlign: "center"
+      textAlign: "center",
+      margin: "0 auto"
     },
     image: {
       margin: "20px auto 10px auto"

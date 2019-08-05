@@ -4,7 +4,8 @@ import {
   CLEAR_ERRORS,
   LOADING_UI,
   SET_UNAUTHENTICATED,
-  LOADING_USER
+  LOADING_USER,
+  LOADING_UI_GOOGLE
 } from "../types";
 import axios from "axios";
 
@@ -16,7 +17,7 @@ export const loginUser = (userData, history) => dispatch => {
       setAuthorizationHeader(response.data.token);
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
-      history.push("/");
+      history.push("/dashboard");
     })
     .catch(err => {
       dispatch({
@@ -34,13 +35,28 @@ export const signupUser = (newUserData, history) => dispatch => {
       setAuthorizationHeader(response.data.token);
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
-      history.push("/");
+      history.push("/dashboard");
     })
     .catch(err => {
       dispatch({
         type: SET_ERRORS,
         payload: err.response.data
       });
+    });
+};
+
+export const signupUserWhitGoogle = (newUser, history) => dispatch => {
+  dispatch({ type: LOADING_UI_GOOGLE });
+  axios
+    .post("/signup/google", newUser)
+    .then(response => {
+      setAuthorizationHeader(response.data.token);
+      dispatch(getUserData());
+      dispatch({ type: CLEAR_ERRORS });
+      history.push("/dashboard");
+    })
+    .catch(err => {
+      console.log(err);
     });
 };
 
