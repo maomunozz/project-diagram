@@ -28,15 +28,8 @@ import {
 
 const styles = theme => ({
   ...theme.formTheme,
-  submitButton: {
-    position: "relative",
-    float: "right"
-  },
   progressSpinner: {
     position: "absolute"
-  },
-  closeButton: {
-    float: "right"
   },
   paperObservers: {
     display: "flex",
@@ -204,6 +197,7 @@ class CreateProject extends Component {
                 className={classes.textField}
                 onChange={this.handleChange}
                 fullWidth
+                variant="outlined"
                 error={errors.title ? true : false}
                 helperText={errors.title}
               />
@@ -217,6 +211,7 @@ class CreateProject extends Component {
                 className={classes.textField}
                 onChange={this.handleChange}
                 fullWidth
+                variant="outlined"
                 error={errors.description ? true : false}
                 helperText={errors.description}
               />
@@ -228,6 +223,7 @@ class CreateProject extends Component {
                 className={classes.textField}
                 onChange={this.handleChange}
                 fullWidth
+                variant="outlined"
                 error={errors.objective ? true : false}
                 helperText={errors.objective}
               />
@@ -287,21 +283,24 @@ class CreateProject extends Component {
                 value={this.state.search}
                 onChange={this.handleUpdateSearch}
                 fullWidth
+                variant="outlined"
               />
               <DialogActions>
                 <Button
                   onClick={this.handleCLose}
-                  color="primary"
+                  variant="contained"
+                  color="secondary"
+                  size="large"
                   className={classes.button}
                 >
                   Cancelar
                 </Button>
                 <Button
-                  type="submit"
+                  onClick={this.handleSubmit}
                   variant="contained"
                   color="primary"
+                  size="large"
                   className={classes.button}
-                  disabled={loading}
                 >
                   Guardar
                   {loading && (

@@ -10,15 +10,15 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Divider from "@material-ui/core/Divider";
+//Icons
+import { Google } from "mdi-material-ui";
 //Redux
 import { connect } from "react-redux";
 import { loginUser, signupUserWhitGoogle } from "../redux/actions/userActions";
 
 const styles = theme => ({
-  ...theme.formTheme,
-  link: {
-    color: "#00bcd4"
-  }
+  ...theme.formTheme
 });
 
 class login extends Component {
@@ -81,12 +81,42 @@ class login extends Component {
         item
         xs={12}
         sm={6}
+        lg={4}
       >
         <img src={AppIcon} alt="Icon" className={classes.image} />
-        <Typography variant="h4" className={classes.pageTitle}>
+        {/* <Typography variant="h4" className={classes.pageTitle}>
           Login
-        </Typography>
+        </Typography> */}
+        <GoogleLogin
+          clientId="731934267377-8krtcq68rcc51mamje4k2kgbhblv1912.apps.googleusercontent.com"
+          buttonText="Ingresar con Google"
+          onSuccess={this.responseGoogle}
+          onFailure={this.responseGoogle}
+          cookiePolicy={"single_host_origin"}
+          render={renderProps => (
+            <Button
+              type="submit"
+              variant="contained"
+              color="secondary"
+              className={classes.googleButton}
+              disabled={loadingGoogle}
+              onClick={renderProps.onClick}
+              fullWidth
+              size="large"
+            >
+              <Google className={classes.iconGoogle} /> Inicia sesión con Google
+              {loadingGoogle && (
+                <CircularProgress
+                  size={30}
+                  className={classes.progress}
+                  color="secondary"
+                />
+              )}
+            </Button>
+          )}
+        />
         <form noValidate onSubmit={this.handleSubmit}>
+          <Divider variant="fullWidth" className={classes.divider} />
           <TextField
             id="email"
             name="email"
@@ -97,6 +127,7 @@ class login extends Component {
             className={classes.textField}
             value={this.state.email}
             onChange={this.handleChange}
+            variant="outlined"
             fullWidth
           />
           <TextField
@@ -109,6 +140,7 @@ class login extends Component {
             className={classes.textField}
             value={this.state.password}
             onChange={this.handleChange}
+            variant="outlined"
             fullWidth
           />
           {errors.general && (
@@ -122,43 +154,23 @@ class login extends Component {
             color="primary"
             className={classes.button}
             disabled={loading}
+            fullWidth
+            size="large"
           >
-            Login
+            Inicia sesión
             {loading && (
               <CircularProgress size={30} className={classes.progress} />
             )}
           </Button>
           <br />
           <small>
-            No tienes una cuenta? registrate
+            No tienes una cuenta? regístrate
             <Link to="/signup" className={classes.link}>
               {" "}
-              aqui
+              aquí
             </Link>
           </small>
         </form>
-        <GoogleLogin
-          clientId="731934267377-8krtcq68rcc51mamje4k2kgbhblv1912.apps.googleusercontent.com"
-          buttonText="Ingresar con Google"
-          onSuccess={this.responseGoogle}
-          onFailure={this.responseGoogle}
-          cookiePolicy={"single_host_origin"}
-          render={renderProps => (
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              disabled={loadingGoogle}
-              onClick={renderProps.onClick}
-            >
-              Ingresar con Google
-              {loadingGoogle && (
-                <CircularProgress size={30} className={classes.progress} />
-              )}
-            </Button>
-          )}
-        />
       </Grid>
     );
   }

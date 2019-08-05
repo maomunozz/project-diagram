@@ -19,10 +19,12 @@ export const generalTheme = {
     },
     form: {
       textAlign: "center",
-      margin: "0 auto"
+      margin: "0 auto",
+      padding: 20,
+      backgroundColor: "white"
     },
     image: {
-      margin: "20px auto 10px auto"
+      margin: "10px auto 10px auto"
     },
     pageTitle: {
       margin: "10px auto 10px auto"
@@ -31,9 +33,8 @@ export const generalTheme = {
       margin: "10px auto 10px auto"
     },
     button: {
-      marginTop: 20,
-      position: "relative",
-      marginBottom: 10
+      margin: "10px auto 10px auto",
+      position: "relative"
     },
     customError: {
       color: "red",
@@ -42,6 +43,22 @@ export const generalTheme = {
     },
     progress: {
       position: "absolute"
+    },
+    link: {
+      color: "#00bcd4"
+    },
+    googleButton: {
+      marginTop: 20,
+      position: "relative",
+      marginBottom: 10
+    },
+    iconGoogle: {
+      marginRight: 10
+    },
+    divider: {
+      //backgroundColor: "black",
+      height: "2px",
+      margin: 10
     }
   },
   profileTheme: {

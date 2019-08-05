@@ -88,18 +88,6 @@ class EditDetails extends Component {
           <DialogContent>
             <form>
               <TextField
-                name="bio"
-                type="text"
-                label="Biografia"
-                multiline
-                rows="2"
-                placeholder="Acerca de tí"
-                className={classes.textField}
-                value={this.state.bio}
-                onChange={this.handleChange}
-                fullWidth
-              />
-              <TextField
                 name="profession"
                 type="text"
                 label="Profesión"
@@ -108,6 +96,7 @@ class EditDetails extends Component {
                 value={this.state.profession}
                 onChange={this.handleChange}
                 fullWidth
+                variant="outlined"
               />
               <TextField
                 name="location"
@@ -118,14 +107,40 @@ class EditDetails extends Component {
                 value={this.state.location}
                 onChange={this.handleChange}
                 fullWidth
+                variant="outlined"
+              />
+              <TextField
+                name="bio"
+                type="text"
+                label="Biografia"
+                multiline
+                rows="2"
+                placeholder="Algo corto acerca de tí"
+                className={classes.textField}
+                value={this.state.bio}
+                onChange={this.handleChange}
+                fullWidth
+                variant="outlined"
               />
             </form>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleCLose} color="primary">
+            <Button
+              onClick={this.handleCLose}
+              variant="contained"
+              color="secondary"
+              size="large"
+              className={classes.button}
+            >
               Cancelar
             </Button>
-            <Button onClick={this.handleSubmit} color="primary">
+            <Button
+              onClick={this.handleSubmit}
+              variant="contained"
+              color="primary"
+              size="large"
+              className={classes.button}
+            >
               Guardar
             </Button>
           </DialogActions>
