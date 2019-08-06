@@ -16,6 +16,7 @@ import Navbar from "./components/Navbar";
 import AuthRoute from "./util/AuthRoute";
 //Pages
 import dashboard from "./pages/dashboard";
+import project from "./pages/project";
 import login from "./pages/login";
 import signup from "./pages/signup";
 import home from "./pages/home";
@@ -48,6 +49,11 @@ class App extends Component {
                 <Route exact path="/login" component={login} />
                 <Route exact path="/signup" component={signup} />
                 <AuthRoute exact path="/dashboard" component={dashboard} />
+                <AuthRoute
+                  exact
+                  path="/project/:projectId"
+                  component={project}
+                />
               </Switch>
             </div>
           </BrowserRouter>

@@ -14,11 +14,6 @@ import { editUserDetails } from "../redux/actions/userActions";
 
 const styles = theme => ({
   ...theme.formTheme,
-  buttonEdit: {
-    position: "relative",
-    left: "70%",
-    marginTop: 20
-  },
   button: {
     float: "right"
   }
@@ -79,15 +74,7 @@ class EditDetails extends Component {
     const { classes } = this.props;
     return (
       <>
-        <Button
-          variant="outlined"
-          onClick={this.handleOpen}
-          color="primary"
-          size="small"
-          className={classes.buttonEdit}
-        >
-          Editar perfil
-        </Button>
+        <div onClick={this.handleOpen}>Editar perfil</div>
         <Dialog
           open={this.state.open}
           onClose={this.handleCLose}

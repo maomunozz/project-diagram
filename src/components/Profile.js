@@ -4,7 +4,6 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import dayjs from "dayjs";
 import locale from "dayjs/locale/es";
 //Components
-import EditDetails from "./EditDetails";
 import CustomButton from "../util/CustomButton";
 //MUI
 import Paper from "@material-ui/core/Paper";
@@ -101,16 +100,6 @@ class Profile extends Component {
             <CalendarToday color="primary" />{" "}
             <span>Se unió en {dayjs(createdAt).format("MMMM YYYY")}</span>
           </div>
-          {/* <Link to="/">
-            <CustomButton
-              tip="Logout"
-              onClick={this.handleLogout}
-              placement="top"
-            >
-              <KeyboardReturn color="primary" />
-            </CustomButton>
-          </Link> */}
-          <EditDetails />
         </div>
       </Paper>
     ) : (

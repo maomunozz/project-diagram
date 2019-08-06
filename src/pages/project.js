@@ -9,11 +9,10 @@ import Box from "@material-ui/core/Box";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
 //Components
-import Project from "../components/Project";
-import Profile from "../components/Profile";
+import ProjectDetails from "../components/ProjectDetails";
 //Redux
 import { connect } from "react-redux";
-import { getProjects } from "../redux/actions/dataActions";
+import { getProject } from "../redux/actions/dataActions";
 
 const styles = theme => ({
   ...theme.formTheme,
@@ -23,62 +22,37 @@ const styles = theme => ({
   }
 });
 
-class dashboard extends Component {
+class project extends Component {
   state = { activeIndex: 0 };
 
   handleChange = (_, activeIndex) => this.setState({ activeIndex });
 
   componentDidMount() {
-    this.props.getProjects();
+    const projectId = this.props.match.params.projectId;
+    this.props.getProject(projectId);
   }
   render() {
     const { activeIndex } = this.state;
     const { classes } = this.props;
-    const { projects, loading } = this.props.data;
-    console.log(projects);
+    const { loading, project } = this.props.data;
     const { userId } = this.props.credentials;
-    let projectsCoordinated = !loading ? (
-      projects.map(project =>
-        project.projectUserId === userId ? (
-          <Project
-            project={project}
-            key={project.projectId}
-            isCoordinated={false}
-          />
-        ) : null
-      )
-    ) : (
-      <p>Loading...</p>
-    );
-
-    let projectsObserved = !loading ? (
-      projects.map(project =>
-        project.observers.includes(userId) ? (
-          <Project
-            project={project}
-            key={project.projectId}
-            isCoordinated={true}
-          />
-        ) : null
-      )
-    ) : (
-      <p>Loading...</p>
-    );
     return (
       <Grid container spacing={2}>
         <Grid item sm={4} xs={12}>
-          <Profile />
+          <ProjectDetails project={project} />
         </Grid>
         <Grid item sm={8} xs={12}>
           <div className={classes.root}>
             <AppBar position="static">
               <Tabs value={activeIndex} onChange={this.handleChange}>
-                <Tab label="Coordinados" />
-                <Tab label="Observados" />
+                <Tab label="Objetos" />
+                <Tab label="Interrelaciones y reacciones" />
+                <Tab label="Interacciones" />
               </Tabs>
             </AppBar>
-            {activeIndex === 0 && <TabPanel>{projectsCoordinated}</TabPanel>}
-            {activeIndex === 1 && <TabPanel>{projectsObserved}</TabPanel>}
+            {activeIndex === 0 && <TabPanel />}
+            {activeIndex === 1 && <TabPanel />}
+            {activeIndex === 2 && <TabPanel />}
           </div>
         </Grid>
       </Grid>
@@ -95,8 +69,8 @@ function TabPanel(props) {
   );
 }
 
-dashboard.propTypes = {
-  getProjects: PropTypes.func.isRequired,
+project.propTypes = {
+  getProject: PropTypes.func.isRequired,
   data: PropTypes.object.isRequired,
   credentials: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
@@ -111,5 +85,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProjects }
-)(withStyles(styles)(dashboard));
+  { getProject }
+)(withStyles(styles)(project));

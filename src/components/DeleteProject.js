@@ -8,7 +8,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 //Icons
-import DeleteIcon from "@material-ui/icons/Delete";
+import { Delete } from "mdi-material-ui";
 //Redux
 import { connect } from "react-redux";
 import { deleteProject } from "../redux/actions/dataActions";
@@ -41,7 +41,7 @@ class DeleteProject extends Component {
           onClick={this.handleOpen}
           //btnClassName={classes.deleteButton}
         >
-          <DeleteIcon color="secondary" />
+          <Delete color="secondary" />
         </CustomButton>
         <Dialog
           open={this.state.open}

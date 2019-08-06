@@ -1,5 +1,6 @@
 import {
   SET_PROJECTS,
+  SET_PROJECT,
   LOADING_DATA,
   DELETE_PROJECT,
   LOADING_UI,
@@ -26,6 +27,22 @@ export const getProjects = () => dispatch => {
         type: SET_PROJECTS,
         payload: []
       });
+    });
+};
+
+//Get all projects
+export const getProject = ProjectId => dispatch => {
+  dispatch({ type: LOADING_DATA });
+  axios
+    .get(`/project/${ProjectId}`)
+    .then(response => {
+      dispatch({
+        type: SET_PROJECT,
+        payload: response.data
+      });
+    })
+    .catch(err => {
+      console.log(err);
     });
 };
 

@@ -1,5 +1,6 @@
 import {
   SET_PROJECTS,
+  SET_PROJECT,
   LOADING_DATA,
   DELETE_PROJECT,
   CREATE_PROJECT,
@@ -24,6 +25,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         projects: action.payload,
+        loading: false
+      };
+    case SET_PROJECT:
+      return {
+        ...state,
+        project: action.payload,
         loading: false
       };
     case GET_OBSERVERS:
