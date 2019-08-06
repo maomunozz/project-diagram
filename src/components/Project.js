@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 //Components
 import CustomButton from "../util/CustomButton";
 import DeleteProject from "../components/DeleteProject";
@@ -8,31 +9,45 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import locale from "dayjs/locale/es";
 //MUI
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import Divider from "@material-ui/core/Divider";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+
 //Icons
-import ChatIcon from "@material-ui/icons/Chat";
+import { EyePlus, FileTree } from "mdi-material-ui";
 //Redux
 import { connect } from "react-redux";
 
-const styles = {
-  card: {
-    position: "relative",
-    display: "flex",
-    marginBottom: 20,
-    maxHeight: 150
+const styles = theme => ({
+  ...theme.formTheme,
+  root: {
+    width: "100%",
+    //maxWidth: 360,
+    backgroundColor: "ffff00"
   },
-  image: {
-    minWidth: 150
+  buttonDelete: {
+    position: "absolute",
+    right: "2%"
   },
-  content: {
-    padding: 24,
-    objectFit: "cover"
+  buttonView: {
+    position: "absolute",
+    right: "8%"
+  },
+  item: {
+    //marginBottom: 10
+  },
+  text: {
+    display: "flex"
+  },
+  iconProject: {
+    backgroundColor: theme.palette.primary.light
   }
-};
+});
 
 class Project extends Component {
   render() {
@@ -40,20 +55,12 @@ class Project extends Component {
     dayjs.extend(relativeTime);
     const {
       classes,
-      project: {
-        title,
-        //objective,
-        createdAt,
-        userImage,
-        description,
-        projectId,
-        commentCount,
-        projectUserId
-      },
+      project: { title, userImage, description, projectId, projectUserId },
       user: {
         authenticated,
         credentials: { userId }
-      }
+      },
+      isCoordinated
     } = this.props;
 
     const deleteButton =
@@ -61,25 +68,37 @@ class Project extends Component {
         <DeleteProject projectId={projectId} />
       ) : null;
     return (
-      <Card className={classes.card}>
-        <CardMedia
-          image={userImage}
-          title="Profile image"
-          className={classes.image}
+      <>
+        <List className={classes.root}>
+          <ListItem className={classes.item}>
+            <ListItemAvatar>
+              {isCoordinated ? (
+                <Avatar alt="avatar" src={userImage} />
+              ) : (
+                <Avatar className={classes.iconProject}>
+                  <FileTree />
+                </Avatar>
+              )}
+            </ListItemAvatar>
+            <ListItemText primary={title} secondary={description} />
+            <ListItemSecondaryAction className={classes.buttonDelete}>
+              {deleteButton}
+            </ListItemSecondaryAction>
+            <ListItemSecondaryAction className={classes.buttonView}>
+              <Link to={`project/${projectId}`}>
+                <CustomButton tip="Ver proyecto">
+                  <EyePlus color="primary" />
+                </CustomButton>
+              </Link>
+            </ListItemSecondaryAction>
+          </ListItem>
+        </List>
+        <Divider
+          variant="fullWidth"
+          component="li"
+          className={classes.divider}
         />
-        <CardContent className={classes.content}>
-          <Typography variant="body2" color="textSecondary">
-            {dayjs(createdAt).fromNow()}
-          </Typography>
-          {deleteButton}
-          <Typography variant="h5">{title}</Typography>
-          <Typography variant="body1">{description}</Typography>
-          <CustomButton tip="comentarios">
-            <ChatIcon color="primary" />
-          </CustomButton>
-          <span>{commentCount} comentarios</span>
-        </CardContent>
-      </Card>
+      </>
     );
   }
 }
@@ -94,9 +113,4 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-const mapActionsToProps = {};
-
-export default connect(
-  mapStateToProps,
-  mapActionsToProps
-)(withStyles(styles)(Project));
+export default connect(mapStateToProps)(withStyles(styles)(Project));

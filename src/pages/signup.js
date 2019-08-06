@@ -113,7 +113,7 @@ class signup extends Component {
               disabled={loadingGoogle}
               onClick={renderProps.onClick}
               fullWidth
-              size="large"
+              size="medium"
             >
               <Google className={classes.iconGoogle} /> Regístrate con Google
               {loadingGoogle && (
@@ -218,7 +218,7 @@ class signup extends Component {
             className={classes.button}
             disabled={loading}
             fullWidth
-            size="large"
+            size="medium"
           >
             Regístrate
             {loading && (

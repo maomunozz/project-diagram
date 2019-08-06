@@ -16,8 +16,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 //Icons
 import AddIcon from "@material-ui/icons/Add";
-import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
+import { BookmarkRemove, BookmarkCheck } from "mdi-material-ui";
 //Redux
 import { connect } from "react-redux";
 import {
@@ -42,8 +41,11 @@ const styles = theme => ({
     margin: theme.spacing(1)
   },
   iconChip: {
-    //fontSize: 30,
+    fontSize: 30
     //margin: 2
+  },
+  button: {
+    float: "right"
   }
 });
 
@@ -202,6 +204,18 @@ class CreateProject extends Component {
                 helperText={errors.title}
               />
               <TextField
+                name="objective"
+                type="text"
+                label="Objetivo"
+                placeholder="Ingresa el objetivo del proyecto"
+                className={classes.textField}
+                onChange={this.handleChange}
+                fullWidth
+                variant="outlined"
+                error={errors.objective ? true : false}
+                helperText={errors.objective}
+              />
+              <TextField
                 name="description"
                 type="text"
                 label="Descripción"
@@ -214,18 +228,6 @@ class CreateProject extends Component {
                 variant="outlined"
                 error={errors.description ? true : false}
                 helperText={errors.description}
-              />
-              <TextField
-                name="objective"
-                type="text"
-                label="Objetivo"
-                placeholder="Ingresa el objetivo del proyecto"
-                className={classes.textField}
-                onChange={this.handleChange}
-                fullWidth
-                variant="outlined"
-                error={errors.objective ? true : false}
-                helperText={errors.objective}
               />
               <Typography variant="body1">
                 Observadores seleccionados
@@ -243,11 +245,12 @@ class CreateProject extends Component {
                         chipClassName={classes.chip}
                         chipId={observer.userId}
                         icon={
-                          <RemoveCircleIcon
+                          <BookmarkRemove
                             id={observer.userId}
                             className={classes.iconChip}
                           />
                         }
+                        color="secondary"
                       />
                     );
                   })}
@@ -266,11 +269,12 @@ class CreateProject extends Component {
                         chipClassName={classes.chip}
                         chipId={observer.userId}
                         icon={
-                          <AddCircleIcon
+                          <BookmarkCheck
                             id={observer.userId}
                             className={classes.iconChip}
                           />
                         }
+                        color="primary"
                       />
                     );
                   })}
@@ -283,36 +287,37 @@ class CreateProject extends Component {
                 value={this.state.search}
                 onChange={this.handleUpdateSearch}
                 fullWidth
+                className={classes.textField}
                 variant="outlined"
               />
-              <DialogActions>
-                <Button
-                  onClick={this.handleCLose}
-                  variant="contained"
-                  color="secondary"
-                  size="large"
-                  className={classes.button}
-                >
-                  Cancelar
-                </Button>
-                <Button
-                  onClick={this.handleSubmit}
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  className={classes.button}
-                >
-                  Guardar
-                  {loading && (
-                    <CircularProgress
-                      size={30}
-                      className={classes.progressSpinner}
-                    />
-                  )}
-                </Button>
-              </DialogActions>
             </form>
           </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={this.handleCLose}
+              variant="contained"
+              color="secondary"
+              size="medium"
+              className={classes.button}
+            >
+              Cancelar
+            </Button>
+            <Button
+              onClick={this.handleSubmit}
+              variant="contained"
+              color="primary"
+              size="medium"
+              className={classes.button}
+            >
+              Guardar
+              {loading && (
+                <CircularProgress
+                  size={30}
+                  className={classes.progressSpinner}
+                />
+              )}
+            </Button>
+          </DialogActions>
         </Dialog>
       </>
     );

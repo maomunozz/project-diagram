@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
-//Components
-import CustomButton from "../util/CustomButton";
 //MUI
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -10,14 +8,17 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-//Icons
-import EditIcon from "@material-ui/icons/Edit";
 //Redux
 import { connect } from "react-redux";
 import { editUserDetails } from "../redux/actions/userActions";
 
 const styles = theme => ({
   ...theme.formTheme,
+  buttonEdit: {
+    position: "relative",
+    left: "70%",
+    marginTop: 20
+  },
   button: {
     float: "right"
   }
@@ -59,8 +60,16 @@ class EditDetails extends Component {
       profession: this.state.profession,
       location: this.state.location
     };
-    this.props.editUserDetails(userDetails);
-    this.handleCLose();
+    if (
+      userDetails.bio === "" &&
+      userDetails.profession === "" &&
+      userDetails.location === ""
+    ) {
+      this.handleCLose();
+    } else {
+      this.props.editUserDetails(userDetails);
+      this.handleCLose();
+    }
   };
   componentDidMount() {
     const { credentials } = this.props;
@@ -70,19 +79,20 @@ class EditDetails extends Component {
     const { classes } = this.props;
     return (
       <>
-        <CustomButton
-          tip="Editar información"
+        <Button
+          variant="outlined"
           onClick={this.handleOpen}
-          btnClassName={classes.button}
-          placement="top"
+          color="primary"
+          size="small"
+          className={classes.buttonEdit}
         >
-          <EditIcon color="primary" />
-        </CustomButton>
+          Editar perfil
+        </Button>
         <Dialog
           open={this.state.open}
           onClose={this.handleCLose}
           fullWidth
-          //maxWith="sm"
+          maxWidth="sm"
         >
           <DialogTitle>Editar perfil</DialogTitle>
           <DialogContent>
@@ -129,7 +139,7 @@ class EditDetails extends Component {
               onClick={this.handleCLose}
               variant="contained"
               color="secondary"
-              size="large"
+              size="medium"
               className={classes.button}
             >
               Cancelar
@@ -138,7 +148,7 @@ class EditDetails extends Component {
               onClick={this.handleSubmit}
               variant="contained"
               color="primary"
-              size="large"
+              size="medium"
               className={classes.button}
             >
               Guardar

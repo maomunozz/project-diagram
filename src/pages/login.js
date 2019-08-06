@@ -102,7 +102,7 @@ class login extends Component {
               disabled={loadingGoogle}
               onClick={renderProps.onClick}
               fullWidth
-              size="large"
+              size="medium"
             >
               <Google className={classes.iconGoogle} /> Inicia sesión con Google
               {loadingGoogle && (
@@ -155,7 +155,7 @@ class login extends Component {
             className={classes.button}
             disabled={loading}
             fullWidth
-            size="large"
+            size="medium"
           >
             Inicia sesión
             {loading && (

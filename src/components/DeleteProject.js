@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 //Components
 import CustomButton from "../util/CustomButton";
 //MUI
-import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -13,14 +12,6 @@ import DeleteIcon from "@material-ui/icons/Delete";
 //Redux
 import { connect } from "react-redux";
 import { deleteProject } from "../redux/actions/dataActions";
-
-const styles = {
-  deleteButton: {
-    position: "absolute",
-    left: "90%",
-    top: "10%"
-  }
-};
 
 class DeleteProject extends Component {
   state = {
@@ -43,13 +34,12 @@ class DeleteProject extends Component {
     });
   };
   render() {
-    const { classes } = this.props;
     return (
       <>
         <CustomButton
           tip="Eliminar proyecto"
           onClick={this.handleOpen}
-          btnClassName={classes.deleteButton}
+          //btnClassName={classes.deleteButton}
         >
           <DeleteIcon color="secondary" />
         </CustomButton>
@@ -57,16 +47,26 @@ class DeleteProject extends Component {
           open={this.state.open}
           onClose={this.handleClose}
           fullWidth
-          maxWidth="sm"
+          maxWidth="xs"
         >
           <DialogTitle>
             Estas seguro de que quieres eliminar este proyecto ?
           </DialogTitle>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button
+              onClick={this.handleClose}
+              color="primary"
+              variant="contained"
+              size="medium"
+            >
               Cancelar
             </Button>
-            <Button onClick={this.deleteProject} color="secondary">
+            <Button
+              onClick={this.deleteProject}
+              color="secondary"
+              variant="contained"
+              size="medium"
+            >
               Eliminar
             </Button>
           </DialogActions>
@@ -78,11 +78,10 @@ class DeleteProject extends Component {
 
 DeleteProject.propTypes = {
   deleteProject: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired,
   projectId: PropTypes.string.isRequired
 };
 
 export default connect(
   null,
   { deleteProject }
-)(withStyles(styles)(DeleteProject));
+)(DeleteProject);

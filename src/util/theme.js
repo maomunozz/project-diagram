@@ -1,16 +1,16 @@
 export const generalTheme = {
   palette: {
     primary: {
-      light: "#33c9dc",
-      main: "#00bcd4",
-      dark: "#008394",
+      main: "#1976d2",
+      light: "#63a4ff",
+      dark: "#004ba0",
       contrastText: "#ffffff"
     },
     secondary: {
-      light: "#ff6333",
-      main: "#ff3d00",
-      dark: "#b22a00",
-      contrastText: "#ffffff"
+      main: "#e91e63",
+      light: "#ff6090",
+      dark: "#b0003a",
+      contrastText: "#000000"
     }
   },
   formTheme: {
