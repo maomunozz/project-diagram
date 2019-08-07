@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 //Components
-import CustomButton from "../util/CustomButton";
+import CustomButton from "../../util/CustomButton";
 //MUI
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -11,7 +11,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { Delete } from "mdi-material-ui";
 //Redux
 import { connect } from "react-redux";
-import { deleteProject } from "../redux/actions/dataActions";
+import { deleteProject } from "../../redux/actions/dataActions";
 
 class DeleteProject extends Component {
   state = {

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+
 //MUI
 import Grid from "@material-ui/core/Grid";
 import Tabs from "@material-ui/core/Tabs";
@@ -9,8 +10,8 @@ import Box from "@material-ui/core/Box";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
 //Components
-import Project from "../components/Project";
-import Profile from "../components/Profile";
+import Project from "../components/project/Project";
+import Profile from "../components/profile/Profile";
 //Redux
 import { connect } from "react-redux";
 import { getProjects } from "../redux/actions/dataActions";
@@ -35,7 +36,6 @@ class dashboard extends Component {
     const { activeIndex } = this.state;
     const { classes } = this.props;
     const { projects, loading } = this.props.data;
-    console.log(projects);
     const { userId } = this.props.credentials;
     let projectsCoordinated = !loading ? (
       projects.map(project =>

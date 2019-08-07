@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 //Components
-import CustomButton from "../util/CustomButton";
-import DeleteProject from "../components/DeleteProject";
+import CustomButton from "../../util/CustomButton";
+import DeleteProject from "./DeleteProject";
 //Dayjs
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";

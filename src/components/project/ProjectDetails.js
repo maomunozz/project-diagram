@@ -6,20 +6,26 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import locale from "dayjs/locale/es";
 //Components
-import CustomButton from "../util/CustomButton";
+import CustomButton from "../../util/CustomButton";
+import Observer from "./Observer";
 //MUI
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
+
 //Icons
-import LocationOn from "@material-ui/icons/LocationOn";
 import CalendarToday from "@material-ui/icons/CalendarToday";
-import { CameraPlus } from "mdi-material-ui";
-//Redux
-import { connect } from "react-redux";
-import { logoutUser, uploadImage } from "../redux/actions/userActions";
 
 const styles = theme => ({
-  ...theme.profileTheme
+  ...theme.profileTheme,
+  paperObservers: {
+    display: "flex",
+    flexWrap: "wrap",
+    padding: "0.2rem",
+    margin: "10px auto 10px auto"
+  },
+  chip: {
+    margin: theme.spacing(1)
+  }
 });
 
 class ProjectDetails extends Component {
@@ -29,7 +35,15 @@ class ProjectDetails extends Component {
     const {
       classes,
       loading,
-      project: { firstNameUser, lastNameUser, createdAt, title, description }
+      project: {
+        firstNameUser,
+        lastNameUser,
+        createdAt,
+        title,
+        description,
+        objective
+      },
+      listDataObservers
     } = this.props;
 
     let dataProject = !loading ? (
@@ -42,9 +56,30 @@ class ProjectDetails extends Component {
             <hr />
             <Typography variant="body1">Descripción: {description}</Typography>
             <hr />
+            <Typography variant="body1">Objetivo: {objective}</Typography>
+            <hr />
             <Typography variant="body2">
               Creado por: {firstNameUser} {lastNameUser}
             </Typography>
+            <hr />
+            <Typography variant="body2" color="primary">
+              Observadores
+            </Typography>
+            <div>
+              {listDataObservers &&
+                listDataObservers.map(observer => {
+                  return (
+                    <Observer
+                      key={observer.userId}
+                      email={observer.email}
+                      imageUrl={observer.imageUrl}
+                      chipClassName={classes.chip}
+                      color="primary"
+                      size="small"
+                    />
+                  );
+                })}
+            </div>
             <hr />
             <CalendarToday color="primary" />{" "}
             <span>Creado {dayjs(createdAt).fromNow()}</span>

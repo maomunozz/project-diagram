@@ -9,7 +9,7 @@ import Box from "@material-ui/core/Box";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
 //Components
-import ProjectDetails from "../components/ProjectDetails";
+import ProjectDetails from "../components/project/ProjectDetails";
 //Redux
 import { connect } from "react-redux";
 import { getProject } from "../redux/actions/dataActions";
@@ -34,12 +34,31 @@ class project extends Component {
   render() {
     const { activeIndex } = this.state;
     const { classes } = this.props;
-    const { loading, project } = this.props.data;
-    const { userId } = this.props.credentials;
+    const { loading, project, observers } = this.props.data;
+    const listObservers = [];
+    const listIdsObservers = [];
+    const listDataObservers = [];
+    Object.assign(listObservers, observers);
+    Object.assign(listIdsObservers, project.observers);
+
+    listObservers.map(observer => {
+      return listIdsObservers.find(id => {
+        if (id === observer.userId) {
+          return listDataObservers.push(observer);
+        } else {
+          return null;
+        }
+      });
+    });
+
+    //const { userId } = this.props.credentials;
     return (
       <Grid container spacing={2}>
         <Grid item sm={4} xs={12}>
-          <ProjectDetails project={project} />
+          <ProjectDetails
+            project={project}
+            listDataObservers={listDataObservers}
+          />
         </Grid>
         <Grid item sm={8} xs={12}>
           <div className={classes.root}>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 //Components
-import CustomButton from "../util/CustomButton";
+import CustomButton from "../../util/CustomButton";
 import Observer from "./Observer";
 //MUI
 import Button from "@material-ui/core/Button";
@@ -22,7 +22,7 @@ import {
   createProject,
   clearErrors,
   getObservers
-} from "../redux/actions/dataActions";
+} from "../../redux/actions/dataActions";
 
 const styles = theme => ({
   ...theme.formTheme,
@@ -253,6 +253,7 @@ class CreateProject extends Component {
                           />
                         }
                         color="secondary"
+                        variant="outlined"
                       />
                     );
                   })}
@@ -277,6 +278,7 @@ class CreateProject extends Component {
                           />
                         }
                         color="primary"
+                        variant="outlined"
                       />
                     );
                   })}

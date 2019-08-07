@@ -4,7 +4,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import dayjs from "dayjs";
 import locale from "dayjs/locale/es";
 //Components
-import CustomButton from "../util/CustomButton";
+import CustomButton from "../../util/CustomButton";
 //MUI
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -14,7 +14,7 @@ import CalendarToday from "@material-ui/icons/CalendarToday";
 import { CameraPlus } from "mdi-material-ui";
 //Redux
 import { connect } from "react-redux";
-import { logoutUser, uploadImage } from "../redux/actions/userActions";
+import { logoutUser, uploadImage } from "../../redux/actions/userActions";
 
 const styles = theme => ({
   ...theme.profileTheme

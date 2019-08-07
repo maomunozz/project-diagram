@@ -12,7 +12,9 @@ function Observer({
   chipClassName,
   chipId,
   icon,
-  color
+  color,
+  size,
+  variant
 }) {
   return (
     <Chip
@@ -24,7 +26,8 @@ function Observer({
       id={chipId}
       deleteIcon={icon}
       color={color}
-      variant="outlined"
+      variant={variant}
+      size={size}
     />
   );
 }

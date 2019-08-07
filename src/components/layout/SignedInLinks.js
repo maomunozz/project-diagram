@@ -10,9 +10,9 @@ import IconButton from "@material-ui/core/IconButton";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Typography from "@material-ui/core/Typography";
 //Components
-import CustomButton from "../util/CustomButton";
-import CreateProject from "./CreateProject";
-import EditDetails from "./EditDetails";
+import CustomButton from "../../util/CustomButton";
+import CreateProject from "../project/CreateProject";
+import EditDetails from "../profile/EditDetails";
 //Icons
 import {
   AccountEdit,
@@ -22,7 +22,7 @@ import {
 } from "mdi-material-ui";
 //Redux
 import { connect } from "react-redux";
-import { logoutUser } from "../redux/actions/userActions";
+import { logoutUser } from "../../redux/actions/userActions";
 
 const styles = theme => ({
   ...theme.formTheme,
