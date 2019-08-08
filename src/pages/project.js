@@ -12,7 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import ProjectDetails from "../components/project/ProjectDetails";
 //Redux
 import { connect } from "react-redux";
-import { getProject } from "../redux/actions/dataActions";
+import { getProjectData } from "../redux/actions/dataActions";
 
 const styles = theme => ({
   ...theme.formTheme,
@@ -29,7 +29,7 @@ class project extends Component {
 
   componentDidMount() {
     const projectId = this.props.match.params.projectId;
-    this.props.getProject(projectId);
+    this.props.getProjectData(projectId);
   }
   render() {
     const { activeIndex } = this.state;
@@ -89,7 +89,7 @@ function TabPanel(props) {
 }
 
 project.propTypes = {
-  getProject: PropTypes.func.isRequired,
+  getProjectData: PropTypes.func.isRequired,
   data: PropTypes.object.isRequired,
   credentials: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
@@ -104,5 +104,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProject }
+  { getProjectData }
 )(withStyles(styles)(project));

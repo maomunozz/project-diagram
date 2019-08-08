@@ -31,10 +31,10 @@ export const getProjects = () => dispatch => {
 };
 
 //Get all projects
-export const getProject = ProjectId => dispatch => {
+export const getProjectData = projectId => dispatch => {
   dispatch({ type: LOADING_DATA });
   axios
-    .get(`/project/${ProjectId}`)
+    .get(`/project/${projectId}`)
     .then(response => {
       dispatch({
         type: SET_PROJECT,
@@ -97,6 +97,16 @@ export const getObservers = () => dispatch => {
     });
 };
 
+//Edit project details
+export const editProjectDetails = projectDetails => dispatch => {
+  dispatch({ type: LOADING_DATA });
+  axios
+    .post("/project/edit", projectDetails)
+    .then(() => {
+      dispatch(getProjectData(projectDetails.projectId));
+    })
+    .catch(err => console.log(err));
+};
 //Clear errors
 export const clearErrors = () => dispatch => {
   dispatch({ type: CLEAR_ERRORS });

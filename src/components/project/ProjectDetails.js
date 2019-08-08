@@ -6,8 +6,8 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import locale from "dayjs/locale/es";
 //Components
-import CustomButton from "../../util/CustomButton";
 import Observer from "./Observer";
+import EditDetailsProject from "./EditDetailsProject";
 //MUI
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -83,6 +83,8 @@ class ProjectDetails extends Component {
             <hr />
             <CalendarToday color="primary" />{" "}
             <span>Creado {dayjs(createdAt).fromNow()}</span>
+            <hr />
+            <EditDetailsProject />
           </div>
         </div>
       </Paper>
