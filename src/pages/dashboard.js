@@ -8,10 +8,10 @@ import Tab from "@material-ui/core/Tab";
 import AppBar from "@material-ui/core/AppBar";
 import Box from "@material-ui/core/Box";
 import withStyles from "@material-ui/core/styles/withStyles";
-import Typography from "@material-ui/core/Typography";
 //Components
 import Project from "../components/project/Project";
 import Profile from "../components/profile/Profile";
+import CreateProject from "../components/project/CreateProject";
 //Redux
 import { connect } from "react-redux";
 import { getProjects } from "../redux/actions/dataActions";
@@ -21,6 +21,9 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper
+  },
+  menuButton: {
+    marginRight: theme.spacing(2)
   }
 });
 
@@ -75,6 +78,7 @@ class dashboard extends Component {
               <Tabs value={activeIndex} onChange={this.handleChange}>
                 <Tab label="Coordinados" />
                 <Tab label="Observados" />
+                {activeIndex === 0 && <CreateProject />}
               </Tabs>
             </AppBar>
             {activeIndex === 0 && <TabPanel>{projectsCoordinated}</TabPanel>}
@@ -89,9 +93,9 @@ class dashboard extends Component {
 function TabPanel(props) {
   const { children } = props;
   return (
-    <Typography component="div" style={{ padding: 24 }}>
+    <div>
       <Box p={3}>{children}</Box>
-    </Typography>
+    </div>
   );
 }
 

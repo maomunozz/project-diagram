@@ -7,7 +7,9 @@ import {
   CREATE_PROJECT,
   SET_ERRORS,
   CLEAR_ERRORS,
-  GET_OBSERVERS
+  GET_OBSERVERS,
+  CREATE_DIAGRAM,
+  DELETE_DIAGRAM
 } from "../types";
 import axios from "axios";
 
@@ -110,4 +112,37 @@ export const editProjectDetails = projectDetails => dispatch => {
 //Clear errors
 export const clearErrors = () => dispatch => {
   dispatch({ type: CLEAR_ERRORS });
+};
+
+//Create one Diagram
+export const createDiagram = (projectId, newDiagram) => dispatch => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`/project/${projectId}/diagram`, newDiagram)
+    .then(response => {
+      dispatch({
+        type: CREATE_DIAGRAM,
+        payload: response.data
+      });
+      dispatch(clearErrors());
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      });
+      console.log(err);
+    });
+};
+
+//Delete one diagram
+export const deleteDiagram = (diagramId, projectId) => dispatch => {
+  axios
+    .delete(`/project/${projectId}/diagram/${diagramId}`)
+    .then(() => {
+      dispatch({ type: DELETE_DIAGRAM, payload: diagramId });
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };

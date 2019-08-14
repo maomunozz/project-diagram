@@ -10,6 +10,8 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
 //Components
 import ProjectDetails from "../components/project/ProjectDetails";
+import CreateDiagram from "../components/diagram/CreateDiagram";
+import Diagram from "../components/diagram/Diagram";
 //Redux
 import { connect } from "react-redux";
 import { getProjectData } from "../redux/actions/dataActions";
@@ -33,13 +35,66 @@ class project extends Component {
   }
   render() {
     const { activeIndex } = this.state;
-    const { classes } = this.props;
-    const { loading, project, observers } = this.props.data;
+    const {
+      classes,
+      user: {
+        authenticated,
+        credentials: { userId }
+      }
+    } = this.props;
+    const { project, observers, loading } = this.props.data;
     const listObservers = [];
     const listIdsObservers = [];
     const listDataObservers = [];
+    const listDataDiagrams = [];
     Object.assign(listObservers, observers);
     Object.assign(listIdsObservers, project.observers);
+    Object.assign(listDataDiagrams, project.diagrams);
+
+    let objectDiagrams = !loading ? (
+      listDataDiagrams.map(diagram =>
+        diagram.type === "1" ? (
+          <Diagram
+            diagram={diagram}
+            key={diagram.diagramId}
+            projectUserId={project.projectUserId}
+            projectId={project.projectId}
+          />
+        ) : null
+      )
+    ) : (
+      <p>Loading...</p>
+    );
+
+    let interrelationDiagrams = !loading ? (
+      listDataDiagrams.map(diagram =>
+        diagram.type === "2" ? (
+          <Diagram
+            diagram={diagram}
+            key={diagram.diagramId}
+            projectUserId={project.projectUserId}
+            projectId={project.projectId}
+          />
+        ) : null
+      )
+    ) : (
+      <p>Loading...</p>
+    );
+
+    let interactionDiagrams = !loading ? (
+      listDataDiagrams.map(diagram =>
+        diagram.type === "3" ? (
+          <Diagram
+            diagram={diagram}
+            key={diagram.diagramId}
+            projectUserId={project.projectUserId}
+            projectId={project.projectId}
+          />
+        ) : null
+      )
+    ) : (
+      <p>Loading...</p>
+    );
 
     listObservers.map(observer => {
       return listIdsObservers.find(id => {
@@ -51,7 +106,6 @@ class project extends Component {
       });
     });
 
-    //const { userId } = this.props.credentials;
     return (
       <Grid container spacing={2}>
         <Grid item sm={4} xs={12}>
@@ -67,11 +121,16 @@ class project extends Component {
                 <Tab label="Objetos" />
                 <Tab label="Interrelaciones y reacciones" />
                 <Tab label="Interacciones" />
+                {authenticated && project.projectUserId === userId ? (
+                  <CreateDiagram
+                    projectId={this.props.match.params.projectId}
+                  />
+                ) : null}
               </Tabs>
             </AppBar>
-            {activeIndex === 0 && <TabPanel />}
-            {activeIndex === 1 && <TabPanel />}
-            {activeIndex === 2 && <TabPanel />}
+            {activeIndex === 0 && <TabPanel>{objectDiagrams}</TabPanel>}
+            {activeIndex === 1 && <TabPanel>{interrelationDiagrams}</TabPanel>}
+            {activeIndex === 2 && <TabPanel>{interactionDiagrams}</TabPanel>}
           </div>
         </Grid>
       </Grid>
@@ -93,13 +152,15 @@ project.propTypes = {
   data: PropTypes.object.isRequired,
   credentials: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  children: PropTypes.node
+  children: PropTypes.node,
+  user: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   data: state.data,
   authenticated: state.user.authenticated,
-  credentials: state.user.credentials
+  credentials: state.user.credentials,
+  user: state.user
 });
 
 export default connect(

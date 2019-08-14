@@ -4,7 +4,9 @@ import {
   LOADING_DATA,
   DELETE_PROJECT,
   CREATE_PROJECT,
-  GET_OBSERVERS
+  CREATE_DIAGRAM,
+  GET_OBSERVERS,
+  DELETE_DIAGRAM
 } from "../types";
 
 const initialState = {
@@ -39,10 +41,10 @@ export default function(state = initialState, action) {
         observers: action.payload
       };
     case DELETE_PROJECT:
-      let index = state.projects.findIndex(
+      let indexProject = state.projects.findIndex(
         project => project.projectId === action.payload
       );
-      state.projects.splice(index, 1);
+      state.projects.splice(indexProject, 1);
       return {
         ...state
       };
@@ -50,6 +52,22 @@ export default function(state = initialState, action) {
       return {
         ...state,
         projects: [action.payload, ...state.projects]
+      };
+    case CREATE_DIAGRAM:
+      return {
+        ...state,
+        project: {
+          ...state.project,
+          diagrams: [action.payload, ...state.project.diagrams]
+        }
+      };
+    case DELETE_DIAGRAM:
+      let indexDiagram = state.project.diagrams.findIndex(
+        diagram => diagram.diagramId === action.payload
+      );
+      state.project.diagrams.splice(indexDiagram, 1);
+      return {
+        ...state
       };
     default:
       return state;

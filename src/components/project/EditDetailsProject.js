@@ -157,14 +157,14 @@ class EditDetailsProject extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  project: state.data.project
-});
-
 EditDetailsProject.propTypes = {
   editProjectDetails: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired
 };
+
+const mapStateToProps = state => ({
+  project: state.data.project
+});
 
 export default connect(
   mapStateToProps,

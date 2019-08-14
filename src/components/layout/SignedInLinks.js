@@ -11,7 +11,6 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Typography from "@material-ui/core/Typography";
 //Components
 import CustomButton from "../../util/CustomButton";
-import CreateProject from "../project/CreateProject";
 import EditDetails from "../profile/EditDetails";
 //Icons
 import {
@@ -67,7 +66,6 @@ const SignedInLinks = props => {
             <ViewDashboard className={classes.colorIcon} />
           </CustomButton>
         </Link>
-        <CreateProject />
         <CustomButton tip="Notificaciones">
           <Bell className={classes.colorIcon} />
         </CustomButton>

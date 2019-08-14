@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 //Components
 import CustomButton from "../../util/CustomButton";
-import DeleteProject from "./DeleteProject";
+import DeleteDiagram from "./DeleteDiagram";
 //Dayjs
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -19,7 +19,7 @@ import Avatar from "@material-ui/core/Avatar";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 
 //Icons
-import { EyePlus, Folder } from "mdi-material-ui";
+import { Pencil, Note, EyePlus } from "mdi-material-ui";
 //Redux
 import { connect } from "react-redux";
 
@@ -49,46 +49,52 @@ const styles = theme => ({
   }
 });
 
-class Project extends Component {
+class Diagram extends Component {
   render() {
     dayjs.locale(locale);
     dayjs.extend(relativeTime);
     const {
       classes,
-      project: { title, userImage, description, projectId, projectUserId },
+      diagram: { diagramName, createdAt, diagramId },
       user: {
         authenticated,
         credentials: { userId }
       },
-      isCoordinated
+      projectUserId,
+      projectId
     } = this.props;
 
     const deleteButton =
       authenticated && projectUserId === userId ? (
-        <DeleteProject projectId={projectId} />
+        <DeleteDiagram diagramId={diagramId} projectId={projectId} />
       ) : null;
     return (
       <>
         <List className={classes.root}>
           <ListItem className={classes.item}>
             <ListItemAvatar>
-              {isCoordinated ? (
-                <Avatar alt="avatar" src={userImage} />
-              ) : (
-                <Avatar className={classes.iconProject}>
-                  <Folder />
-                </Avatar>
-              )}
+              <Avatar className={classes.iconProject}>
+                <Note />
+              </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={title} secondary={description} />
+            <ListItemText
+              primary={diagramName}
+              secondary={`creado ${dayjs(createdAt).fromNow()}`}
+            />
             <ListItemSecondaryAction className={classes.buttonDelete}>
               {deleteButton}
             </ListItemSecondaryAction>
             <ListItemSecondaryAction className={classes.buttonView}>
-              <Link to={`project/${projectId}`}>
-                <CustomButton tip="Ver proyecto">
-                  <EyePlus color="primary" />
-                </CustomButton>
+              <Link to={`diagram/${diagramId}`}>
+                {projectUserId === userId ? (
+                  <CustomButton tip="Editar diagrama">
+                    <Pencil color="primary" />
+                  </CustomButton>
+                ) : (
+                  <CustomButton tip="Ver diagrama">
+                    <EyePlus color="primary" />
+                  </CustomButton>
+                )}
               </Link>
             </ListItemSecondaryAction>
           </ListItem>
@@ -103,9 +109,9 @@ class Project extends Component {
   }
 }
 
-Project.propTypes = {
+Diagram.propTypes = {
   user: PropTypes.object.isRequired,
-  project: PropTypes.object.isRequired,
+  diagram: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired
 };
 
@@ -113,4 +119,4 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps)(withStyles(styles)(Project));
+export default connect(mapStateToProps)(withStyles(styles)(Diagram));

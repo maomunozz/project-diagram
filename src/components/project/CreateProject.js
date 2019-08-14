@@ -15,7 +15,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 //Icons
-import { BookmarkRemove, BookmarkCheck, NotePlus } from "mdi-material-ui";
+import { BookmarkRemove, BookmarkCheck, FolderPlus } from "mdi-material-ui";
 //Redux
 import { connect } from "react-redux";
 import {
@@ -48,6 +48,10 @@ const styles = theme => ({
   },
   colorIcon: {
     color: "#fff"
+  },
+  btnCreateProject: {
+    position: "absolute",
+    marginLeft: "90%"
   }
 });
 
@@ -181,8 +185,12 @@ class CreateProject extends Component {
     let observersSelected = this.state.dataObserver;
     return (
       <>
-        <CustomButton onClick={this.handleOpen} tip="Crear nuevo projecto">
-          <NotePlus className={classes.colorIcon} />
+        <CustomButton
+          onClick={this.handleOpen}
+          tip="Crear nuevo projecto"
+          btnClassName={classes.btnCreateProject}
+        >
+          <FolderPlus className={classes.colorIcon} />
         </CustomButton>
         <Dialog
           open={this.state.open}

@@ -11,9 +11,10 @@ import EditDetailsProject from "./EditDetailsProject";
 //MUI
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-
 //Icons
 import CalendarToday from "@material-ui/icons/CalendarToday";
+//Redux
+import { connect } from "react-redux";
 
 const styles = theme => ({
   ...theme.profileTheme,
@@ -41,10 +42,12 @@ class ProjectDetails extends Component {
         createdAt,
         title,
         description,
-        objective
+        objective,
+        projectUserId
       },
       listDataObservers
     } = this.props;
+    const { userId } = this.props.credentials;
 
     let dataProject = !loading ? (
       <Paper className={classes.paper}>
@@ -84,7 +87,7 @@ class ProjectDetails extends Component {
             <CalendarToday color="primary" />{" "}
             <span>Creado {dayjs(createdAt).fromNow()}</span>
             <hr />
-            <EditDetailsProject />
+            {projectUserId === userId && <EditDetailsProject />}
           </div>
         </div>
       </Paper>
@@ -97,7 +100,12 @@ class ProjectDetails extends Component {
 }
 
 ProjectDetails.propTypes = {
+  credentials: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(ProjectDetails);
+const mapStateToProps = state => ({
+  credentials: state.user.credentials
+});
+
+export default connect(mapStateToProps)(withStyles(styles)(ProjectDetails));
