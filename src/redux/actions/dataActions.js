@@ -9,7 +9,8 @@ import {
   CLEAR_ERRORS,
   GET_OBSERVERS,
   CREATE_DIAGRAM,
-  DELETE_DIAGRAM
+  DELETE_DIAGRAM,
+  SAVE_DIAGRAM
 } from "../types";
 import axios from "axios";
 
@@ -109,6 +110,7 @@ export const editProjectDetails = projectDetails => dispatch => {
     })
     .catch(err => console.log(err));
 };
+
 //Clear errors
 export const clearErrors = () => dispatch => {
   dispatch({ type: CLEAR_ERRORS });
@@ -145,4 +147,14 @@ export const deleteDiagram = (diagramId, projectId) => dispatch => {
     .catch(err => {
       console.log(err);
     });
+};
+
+//Save diagram
+export const saveDiagram = (diagram, diagramId, projectId) => dispatch => {
+  axios
+    .post(`/project/${projectId}/diagram/${diagramId}`, diagram)
+    .then(() => {
+      dispatch({ type: SAVE_DIAGRAM, payload: diagramId });
+    })
+    .catch(err => console.log(err));
 };

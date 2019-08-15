@@ -20,6 +20,7 @@ import project from "./pages/project";
 import login from "./pages/login";
 import signup from "./pages/signup";
 import home from "./pages/home";
+import objectDiagram from "./pages/objectDiagram";
 
 const theme = createMuiTheme(generalTheme);
 
@@ -53,6 +54,11 @@ class App extends Component {
                   exact
                   path="/project/:projectId"
                   component={project}
+                />
+                <AuthRoute
+                  exact
+                  path="/project/:projectId/diagram/:diagramId"
+                  component={objectDiagram}
                 />
               </Switch>
             </div>

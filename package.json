@@ -11,6 +11,8 @@
     "mdi-material-ui": "^6.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-dropdown-modal": "^1.2.5",
+    "react-flow-diagram": "^2.13.0",
     "react-google-login": "^5.0.5",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",

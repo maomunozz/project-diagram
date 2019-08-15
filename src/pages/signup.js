@@ -63,7 +63,6 @@ class signup extends Component {
       lastName: response.profileObj.familyName,
       imageUrl: response.profileObj.imageUrl
     };
-    console.log(newUser.idToken);
     this.props.signupUserWhitGoogle(newUser, this.props.history);
   };
 

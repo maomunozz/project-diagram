@@ -6,7 +6,8 @@ import {
   CREATE_PROJECT,
   CREATE_DIAGRAM,
   GET_OBSERVERS,
-  DELETE_DIAGRAM
+  DELETE_DIAGRAM,
+  SAVE_DIAGRAM
 } from "../types";
 
 const initialState = {
@@ -66,6 +67,10 @@ export default function(state = initialState, action) {
         diagram => diagram.diagramId === action.payload
       );
       state.project.diagrams.splice(indexDiagram, 1);
+      return {
+        ...state
+      };
+    case SAVE_DIAGRAM:
       return {
         ...state
       };

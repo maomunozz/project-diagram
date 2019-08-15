@@ -85,7 +85,7 @@ class Diagram extends Component {
               {deleteButton}
             </ListItemSecondaryAction>
             <ListItemSecondaryAction className={classes.buttonView}>
-              <Link to={`diagram/${diagramId}`}>
+              <Link to={`/project/${projectId}/diagram/${diagramId}`}>
                 {projectUserId === userId ? (
                   <CustomButton tip="Editar diagrama">
                     <Pencil color="primary" />
