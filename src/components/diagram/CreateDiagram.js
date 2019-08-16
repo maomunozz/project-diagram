@@ -80,7 +80,7 @@ class CreateDiagram extends Component {
     const newDiagram = {
       type: this.state.type,
       diagramName: this.state.diagramName,
-      diagram: []
+      diagram: "[]"
     };
     this.props.createDiagram(this.props.projectId, newDiagram);
   };

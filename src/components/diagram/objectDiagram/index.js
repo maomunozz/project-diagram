@@ -42,7 +42,7 @@ class ObjectDiagram extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      diagram: []
+      diagram: this.props.diagram
     };
   }
 
@@ -57,46 +57,36 @@ class ObjectDiagram extends Component {
     this.props.saveDiagram(diagram, diagramId, projectId);
   };
 
-  handleShow = e => {
-    const x = document.getElementsByClassName("list-diagrams");
-    for (let i = 0; i < x.length; i++) {
-      x[i].style.backgroundColor = "transparent";
-    }
-
-    const y = document.getElementsByClassName("sc-ifAKCX");
-    y[0].style.display = "block";
-
-    const diagramId = e.target.id;
-
-    const div = document.getElementById(diagramId);
-    div.style.backgroundColor = "#c5cae9";
-
-    const diagrams_copy = [];
-    Object.assign(diagrams_copy, this.props.diagrams);
-    const result = diagrams_copy.filter(diagram => diagram.id === diagramId);
-    const view_diagram = JSON.parse(result[0].diagram);
-    diagramStore.dispatch(setEntities(view_diagram));
-
-    this.setState({
-      diagramId: diagramId
-    });
+  handleShow = () => {
+    //const diagrams_copy = [];
+    //Object.assign(diagrams_copy, this.props.data.diagram.diagram);
+    //const view_diagram = JSON.parse(this.props.data.diagram.diagram);
+    //console.log(view_diagram);
+    //diagramStore.dispatch(setEntities(this.props.diagram));
   };
 
+  // componentDidMount() {
+  //   diagramOn("anyChange", entityState => {
+  //     this.setState({
+  //       diagram: entityState
+  //     });
+  //   });
+  //   diagramStore.dispatch(setEntities(this.state.diagram));
+  // }
+
   componentDidMount() {
+    diagramStore.dispatch(setConfig(config));
+    diagramStore.dispatch(setEntities(this.state.diagram));
     diagramOn("anyChange", entityState => {
       this.setState({
         diagram: entityState
       });
     });
-    diagramStore.dispatch(setEntities(this.state.diagram));
-  }
-
-  componentWillMount() {
-    diagramStore.dispatch(setConfig(config));
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, diagram } = this.props;
+    console.log(diagram);
     return (
       <>
         <div className={classes.diagram}>

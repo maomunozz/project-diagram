@@ -7,13 +7,14 @@ import {
   CREATE_DIAGRAM,
   GET_OBSERVERS,
   DELETE_DIAGRAM,
-  SAVE_DIAGRAM
+  SET_DIAGRAM
 } from "../types";
 
 const initialState = {
   observers: [],
   projects: [],
   project: {},
+  diagram: {},
   loading: false
 };
 
@@ -28,6 +29,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         projects: action.payload,
+        loading: false
+      };
+    case SET_DIAGRAM:
+      return {
+        ...state,
+        diagram: action.payload,
         loading: false
       };
     case SET_PROJECT:
@@ -67,10 +74,6 @@ export default function(state = initialState, action) {
         diagram => diagram.diagramId === action.payload
       );
       state.project.diagrams.splice(indexDiagram, 1);
-      return {
-        ...state
-      };
-    case SAVE_DIAGRAM:
       return {
         ...state
       };

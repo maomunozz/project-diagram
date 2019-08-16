@@ -10,7 +10,7 @@ import {
   GET_OBSERVERS,
   CREATE_DIAGRAM,
   DELETE_DIAGRAM,
-  SAVE_DIAGRAM
+  SET_DIAGRAM
 } from "../types";
 import axios from "axios";
 
@@ -33,7 +33,7 @@ export const getProjects = () => dispatch => {
     });
 };
 
-//Get all projects
+//Get data to one project
 export const getProjectData = projectId => dispatch => {
   dispatch({ type: LOADING_DATA });
   axios
@@ -41,6 +41,22 @@ export const getProjectData = projectId => dispatch => {
     .then(response => {
       dispatch({
         type: SET_PROJECT,
+        payload: response.data
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+//Get data to one project
+export const getDiagramData = diagramId => dispatch => {
+  dispatch({ type: LOADING_DATA });
+  axios
+    .get(`/diagram/${diagramId}`)
+    .then(response => {
+      dispatch({
+        type: SET_DIAGRAM,
         payload: response.data
       });
     })
@@ -154,7 +170,7 @@ export const saveDiagram = (diagram, diagramId, projectId) => dispatch => {
   axios
     .post(`/project/${projectId}/diagram/${diagramId}`, diagram)
     .then(() => {
-      dispatch({ type: SAVE_DIAGRAM, payload: diagramId });
+      dispatch(getDiagramData(diagramId));
     })
     .catch(err => console.log(err));
 };
