@@ -44,6 +44,7 @@ class ObjectDiagram extends Component {
     this.state = {
       diagram: this.props.diagram
     };
+    this._isMounted = false;
   }
 
   handleSubmit = e => {
@@ -57,31 +58,20 @@ class ObjectDiagram extends Component {
     this.props.saveDiagram(diagram, diagramId, projectId);
   };
 
-  handleShow = () => {
-    //const diagrams_copy = [];
-    //Object.assign(diagrams_copy, this.props.data.diagram.diagram);
-    //const view_diagram = JSON.parse(this.props.data.diagram.diagram);
-    //console.log(view_diagram);
-    //diagramStore.dispatch(setEntities(this.props.diagram));
-  };
-
-  // componentDidMount() {
-  //   diagramOn("anyChange", entityState => {
-  //     this.setState({
-  //       diagram: entityState
-  //     });
-  //   });
-  //   diagramStore.dispatch(setEntities(this.state.diagram));
-  // }
-
   componentDidMount() {
-    diagramStore.dispatch(setConfig(config));
-    diagramStore.dispatch(setEntities(this.state.diagram));
-    diagramOn("anyChange", entityState => {
-      this.setState({
-        diagram: entityState
+    this._isMounted = true;
+    this._isMounted && diagramStore.dispatch(setConfig(config));
+    this._isMounted && diagramStore.dispatch(setEntities(this.state.diagram));
+    this._isMounted &&
+      diagramOn("anyChange", entityState => {
+        this.setState({
+          diagram: entityState
+        });
       });
-    });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {
