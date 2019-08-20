@@ -1,5 +1,7 @@
 import React from "react";
 import style from "styled-components";
+//MUI
+import Tooltip from "@material-ui/core/Tooltip";
 
 import type { DiagComponentProps } from "react-flow-diagram";
 
@@ -55,21 +57,23 @@ export type ObjectHardwareProps = DiagComponentProps & {
   handleRef: HTMLTextAreaElement => void
 };
 const ObjectHardware = (props: ObjectHardwareProps) => (
-  <ObjectHardwareStyle width={props.model.width} height={props.model.height}>
-    <EditName
-      value={props.name}
-      onChange={props.refreshName}
-      onKeyDown={props.handleKeyPress}
-      innerRef={textarea => props.handleRef(textarea)}
-      style={{ display: props.isEditing ? "block" : "none" }}
-    />
-    <Name
-      onDoubleClick={() => props.toggleEdit(true)}
-      style={{ display: !props.isEditing ? "block" : "none" }}
-    >
-      {props.model.name}
-    </Name>
-  </ObjectHardwareStyle>
+  <Tooltip title="Objeto Hardware" placement="top">
+    <ObjectHardwareStyle width={props.model.width} height={props.model.height}>
+      <EditName
+        value={props.name}
+        onChange={props.refreshName}
+        onKeyDown={props.handleKeyPress}
+        innerRef={textarea => props.handleRef(textarea)}
+        style={{ display: props.isEditing ? "block" : "none" }}
+      />
+      <Name
+        onDoubleClick={() => props.toggleEdit(true)}
+        style={{ display: !props.isEditing ? "block" : "none" }}
+      >
+        {props.model.name}
+      </Name>
+    </ObjectHardwareStyle>
+  </Tooltip>
 );
 
 /*

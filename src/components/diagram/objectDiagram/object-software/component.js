@@ -1,7 +1,8 @@
 import React from "react";
 import style from "styled-components";
-
 import type { DiagComponentProps } from "react-flow-diagram";
+//MUI
+import Tooltip from "@material-ui/core/Tooltip";
 
 /*
  * Presentational
@@ -58,21 +59,23 @@ export type ObjectSoftwareProps = DiagComponentProps & {
   handleRef: HTMLTextAreaElement => void
 };
 const ObjectSoftware = (props: ObjectSoftwareProps) => (
-  <ObjectSoftwareStyle width={props.model.width} height={props.model.height}>
-    <EditName
-      value={props.name}
-      onChange={props.refreshName}
-      onKeyDown={props.handleKeyPress}
-      innerRef={textarea => props.handleRef(textarea)}
-      style={{ display: props.isEditing ? "block" : "none" }}
-    />
-    <Name
-      onDoubleClick={() => props.toggleEdit(true)}
-      style={{ display: !props.isEditing ? "block" : "none" }}
-    >
-      {props.model.name}
-    </Name>
-  </ObjectSoftwareStyle>
+  <Tooltip title="Objeto Software" placement="top">
+    <ObjectSoftwareStyle width={props.model.width} height={props.model.height}>
+      <EditName
+        value={props.name}
+        onChange={props.refreshName}
+        onKeyDown={props.handleKeyPress}
+        innerRef={textarea => props.handleRef(textarea)}
+        style={{ display: props.isEditing ? "block" : "none" }}
+      />
+      <Name
+        onDoubleClick={() => props.toggleEdit(true)}
+        style={{ display: !props.isEditing ? "block" : "none" }}
+      >
+        {props.model.name}
+      </Name>
+    </ObjectSoftwareStyle>
+  </Tooltip>
 );
 
 /*

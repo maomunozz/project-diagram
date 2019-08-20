@@ -150,7 +150,6 @@ function TabPanel(props) {
 project.propTypes = {
   getProjectData: PropTypes.func.isRequired,
   data: PropTypes.object.isRequired,
-  credentials: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   children: PropTypes.node,
   user: PropTypes.object.isRequired
@@ -158,8 +157,6 @@ project.propTypes = {
 
 const mapStateToProps = state => ({
   data: state.data,
-  authenticated: state.user.authenticated,
-  credentials: state.user.credentials,
   user: state.user
 });
 

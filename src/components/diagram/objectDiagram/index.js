@@ -95,23 +95,33 @@ class ObjectDiagram extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const {
+      classes,
+      user: {
+        authenticated,
+        credentials: { userId }
+      },
+      diagramUserId
+    } = this.props;
+
     return (
       <>
         <div className={classes.diagram}>
           <CssBaseline />
           <div className={classes.diagramContainer}>
             <Diagram customEntities={customEntities} />
-            <Fab
-              title="guardar diagrama"
-              color="primary"
-              aria-label="Save"
-              size="medium"
-              onClick={this.handleSubmit}
-              className={classes.buttonSave}
-            >
-              <SaveIcon />
-            </Fab>
+            {authenticated && diagramUserId === userId ? (
+              <Fab
+                title="guardar diagrama"
+                color="primary"
+                aria-label="Save"
+                size="medium"
+                onClick={this.handleSubmit}
+                className={classes.buttonSave}
+              >
+                <SaveIcon />
+              </Fab>
+            ) : null}
           </div>
         </div>
       </>
@@ -121,10 +131,15 @@ class ObjectDiagram extends Component {
 
 ObjectDiagram.propTypes = {
   saveDiagram: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired
 };
 
+const mapStateToProps = state => ({
+  user: state.user
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { saveDiagram }
 )(withStyles(styles)(ObjectDiagram));

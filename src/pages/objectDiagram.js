@@ -26,7 +26,7 @@ class objectDiagram extends Component {
     const projectId = this.props.match.params.projectId;
     const diagramId = this.props.match.params.diagramId;
     const {
-      diagram: { diagram },
+      diagram: { diagram, diagramUserId },
       loading
     } = this.props.data;
     let copyDiagram = [];
@@ -38,6 +38,7 @@ class objectDiagram extends Component {
         projectId={projectId}
         diagramId={diagramId}
         diagram={copyDiagram}
+        diagramUserId={diagramUserId}
       />
     ) : (
       <Loader />
