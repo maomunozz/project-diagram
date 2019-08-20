@@ -25,16 +25,36 @@ const styles = theme => ({
     flexGrow: 1
   },
   diagramContainer: {
-    display: "flex",
-    height: "100%",
-    width: "100%",
-    minHeight: "48rem",
-    maxHeight: "48rem"
+    "@media (min-width: 1200px)": {
+      display: "flex",
+      height: "100%",
+      width: "100%",
+      minHeight: "48rem",
+      maxHeight: "48rem",
+      minWidth: "62rem",
+      maxWidth: "62rem"
+    },
+    "@media (min-width: 1600px)": {
+      display: "flex",
+      height: "100%",
+      width: "100%",
+      minHeight: "41rem",
+      maxHeight: "41rem",
+      minWidth: "72.5rem",
+      maxWidth: "72.5rem"
+    }
   },
   buttonSave: {
-    position: "absolute",
-    bottom: "2.5rem",
-    right: "3rem"
+    "@media (min-width: 1200px)": {
+      position: "absolute",
+      bottom: "2.8rem",
+      right: "3.8rem"
+    },
+    "@media (min-width: 1600px)": {
+      position: "absolute",
+      bottom: "2rem",
+      right: "7rem"
+    }
   }
 });
 
@@ -75,8 +95,7 @@ class ObjectDiagram extends Component {
   }
 
   render() {
-    const { classes, diagram } = this.props;
-    console.log(diagram);
+    const { classes } = this.props;
     return (
       <>
         <div className={classes.diagram}>

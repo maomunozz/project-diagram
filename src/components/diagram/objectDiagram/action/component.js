@@ -2,7 +2,7 @@ import React from "react";
 import style from "styled-components";
 import Dropdown from "react-dropdown-modal";
 import "react-dropdown-modal/lib/dropdown.css";
-import TestIcon from "./icons/TestIcon";
+import ActionIcon from "./ActionIcon";
 //Icons
 import { ChevronDown } from "mdi-material-ui";
 //MUI
@@ -18,7 +18,7 @@ const styles = theme => ({
 });
 
 const ActionStyle = style.div`
-  background-color: #cfd8dc;
+  background-color: #ffffff;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -29,8 +29,8 @@ const ActionStyle = style.div`
 `;
 
 const Name = style.span`
-  flex: 1 0;
-  margin: auto;
+  flex: auto;
+  padding-top: 0.25rem;
 `;
 
 export type ActionProps = DiagComponentProps & {
@@ -40,7 +40,7 @@ export type ActionProps = DiagComponentProps & {
 const Action = (props: ActionProps) => (
   <ActionStyle width={props.model.width} height={props.model.height}>
     <Name>
-      <TestIcon pathIcon={props.model.name} />
+      <ActionIcon pathIcon={props.model.name} />
     </Name>
   </ActionStyle>
 );
@@ -74,37 +74,94 @@ class ActionComponent extends React.PureComponent<
         <Dropdown
           visible={this.state.visible}
           onButtonClick={e => {
-            console.log("Mouse", e.screenX, e.screenY); // You can use Mouse-positions in state
             this.setState({ visible: true });
           }}
           onClose={() => {
             this.setState({ visible: false });
           }}
           modalButtons={{
-            "acción 1": () => {
+            Desplazar: () => {
               this.props.setName({
                 id: this.props.model.id,
-                name: "M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"
+                name: "desplazar"
+              });
+            },
+            Agarrar: () => {
+              this.props.setName({
+                id: this.props.model.id,
+                name: "agarrar"
               });
             }, // onClick of that button
-            "acción 2": () => {
+            Lanzar: () => {
               this.props.setName({
                 id: this.props.model.id,
-                name:
-                  "M16.958 3.143c-1.651-1.924-4.099-3.143-6.833-3.143-4.971 0-9 4.029-9 9s4.029 9 9 9c2.734 0 5.183-1.219 6.833-3.143l-5.708-5.857 5.708-5.857zM12.375 2.12c0.693 0 1.255 0.562 1.255 1.255s-0.562 1.255-1.255 1.255-1.255-0.562-1.255-1.255c0-0.693 0.562-1.255 1.255-1.255z"
+                name: "lanzar"
               });
             },
-            "acción 3": () => {
+            Levantar: () => {
               this.props.setName({
                 id: this.props.model.id,
-                name:
-                  "M16.875 0h1.125v12.938c0 1.553-1.763 2.813-3.938 2.813s-3.938-1.259-3.938-2.813c0-1.553 1.763-2.813 3.938-2.813 1.102 0 2.098 0.323 2.813 0.844v-6.469l-9 2v8.687c0 1.553-1.763 2.813-3.938 2.813s-3.938-1.259-3.938-2.813c0-1.553 1.763-2.813 3.938-2.813 1.102 0 2.098 0.323 2.813 0.844v-10.969l10.125-2.25z"
+                name: "levantar"
               });
             },
-            "acción 4": () => {
+            Presionar: () => {
               this.props.setName({
                 id: this.props.model.id,
-                name: "M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"
+                name: "presionar"
+              });
+            },
+            Gestualizar: () => {
+              this.props.setName({
+                id: this.props.model.id,
+                name: "gestualizar"
+              });
+            }, // onClick of that button
+            Soltar: () => {
+              this.props.setName({
+                id: this.props.model.id,
+                name: "soltar"
+              });
+            },
+            Leer: () => {
+              this.props.setName({
+                id: this.props.model.id,
+                name: "leer"
+              });
+            },
+            Girar: () => {
+              this.props.setName({
+                id: this.props.model.id,
+                name: "girar"
+              });
+            },
+            Introducir: () => {
+              this.props.setName({
+                id: this.props.model.id,
+                name: "introducir"
+              });
+            },
+            Adherir: () => {
+              this.props.setName({
+                id: this.props.model.id,
+                name: "adherir"
+              });
+            },
+            Arrastrar: () => {
+              this.props.setName({
+                id: this.props.model.id,
+                name: "arrastrar"
+              });
+            },
+            Retroalimentar: () => {
+              this.props.setName({
+                id: this.props.model.id,
+                name: "retroalimentar"
+              });
+            }, // onClick of that button
+            Ajustar: () => {
+              this.props.setName({
+                id: this.props.model.id,
+                name: "ajustar"
               });
             }
           }}

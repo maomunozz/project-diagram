@@ -19,7 +19,7 @@ const config = {
     },
     Action: {
       width: 110,
-      height: 40
+      height: 45
     },
     ObjectHardware: {
       width: 75,
@@ -38,7 +38,7 @@ const config = {
       height: 75
     }
   },
-  gridSize: 10
+  gridSize: 20
 };
 
 const customEntities = {

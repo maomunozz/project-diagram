@@ -47,10 +47,10 @@ class login extends Component {
   responseGoogle = response => {
     const newUser = {
       idToken: response.accessToken,
-      email: response.profileObj.email,
       firstName: response.profileObj.givenName,
       lastName: response.profileObj.familyName,
-      imageUrl: response.profileObj.imageUrl
+      imageUrl: response.profileObj.imageUrl,
+      email: response.profileObj.email
     };
     this.props.signupUserWhitGoogle(newUser, this.props.history);
   };

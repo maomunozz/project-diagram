@@ -24,12 +24,16 @@ import objectDiagram from "./pages/objectDiagram";
 
 const theme = createMuiTheme(generalTheme);
 
+axios.defaults.baseURL =
+  "https://us-central1-diagram-project.cloudfunctions.net/api";
+
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);
   if (decodedToken.exp * 1000 < Date.now()) {
     store.dispatch(logoutUser());
     window.location.href = "/login";
+    window.location.reload();
   } else {
     store.dispatch({ type: SET_AUTHENTICATED });
     axios.defaults.headers.common["Authorization"] = token;

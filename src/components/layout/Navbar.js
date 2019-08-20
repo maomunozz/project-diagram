@@ -28,7 +28,8 @@ const styles = theme => ({
     color: "#fff"
   },
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    marginBottom: 80
   },
   menuButton: {
     marginRight: theme.spacing(2)

@@ -6,9 +6,18 @@ body {
   background-color: rgb(245, 245, 245)
 }
 
-.container {
-  margin: 80px auto 0 auto;
-  max-width: 1200px;
+@media (min-width: 1200px) {
+  .container {
+    margin: 0 auto 0 auto;
+    max-width: 1200px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .container {
+    margin: 0 auto 0 auto;
+    max-width: 1400px;
+  }
 }
 
 a {

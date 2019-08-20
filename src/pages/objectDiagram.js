@@ -44,8 +44,8 @@ class objectDiagram extends Component {
     );
     return (
       <Grid container spacing={2}>
-        <Grid item sm={3} xs={12} />
-        <Grid item sm={9} xs={12}>
+        <Grid item sm={2} xs={12} />
+        <Grid item sm={10} xs={12}>
           {viewDiagram}
         </Grid>
       </Grid>
