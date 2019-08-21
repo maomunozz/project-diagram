@@ -7,7 +7,8 @@ import {
   CREATE_DIAGRAM,
   GET_OBSERVERS,
   DELETE_DIAGRAM,
-  SET_DIAGRAM
+  SET_DIAGRAM,
+  SUBMIT_COMMENT
 } from "../types";
 
 const initialState = {
@@ -76,6 +77,14 @@ export default function(state = initialState, action) {
       state.project.diagrams.splice(indexDiagram, 1);
       return {
         ...state
+      };
+    case SUBMIT_COMMENT:
+      return {
+        ...state,
+        diagram: {
+          ...state.diagram,
+          comments: [action.payload, ...state.diagram.comments]
+        }
       };
     default:
       return state;

@@ -31,8 +31,8 @@ const styles = theme => ({
       width: "100%",
       minHeight: "48rem",
       maxHeight: "48rem",
-      minWidth: "62rem",
-      maxWidth: "62rem"
+      minWidth: "56rem",
+      maxWidth: "56rem"
     },
     "@media (min-width: 1600px)": {
       display: "flex",
@@ -40,8 +40,8 @@ const styles = theme => ({
       width: "100%",
       minHeight: "41rem",
       maxHeight: "41rem",
-      minWidth: "72.5rem",
-      maxWidth: "72.5rem"
+      minWidth: "65.5rem",
+      maxWidth: "65.5rem"
     }
   },
   buttonSave: {

@@ -10,7 +10,8 @@ import {
   GET_OBSERVERS,
   CREATE_DIAGRAM,
   DELETE_DIAGRAM,
-  SET_DIAGRAM
+  SET_DIAGRAM,
+  SUBMIT_COMMENT
 } from "../types";
 import axios from "axios";
 
@@ -173,4 +174,27 @@ export const saveDiagram = (diagram, diagramId, projectId) => dispatch => {
       dispatch(getDiagramData(diagramId));
     })
     .catch(err => console.log(err));
+};
+
+//Submit comment
+export const submitComment = (
+  diagramId,
+  projectId,
+  commentData
+) => dispatch => {
+  axios
+    .post(`/project/${projectId}/diagram/${diagramId}/comment`, commentData)
+    .then(response => {
+      dispatch({
+        type: SUBMIT_COMMENT,
+        payload: response.data
+      });
+      dispatch(clearErrors());
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      });
+    });
 };

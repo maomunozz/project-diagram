@@ -2,12 +2,23 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 //Components
 import Loader from "../util/Loader";
+import ObjectDiagram from "../components/diagram/objectDiagram/index";
+import Comments from "../components/diagram/Comments";
+import CommentForm from "../components/diagram/CommentForm";
 //MUI
 import Grid from "@material-ui/core/Grid";
-import ObjectDiagram from "../components/diagram/objectDiagram/index";
+import Paper from "@material-ui/core/Paper";
+import withStyles from "@material-ui/core/styles/withStyles";
 //Redux
 import { getDiagramData } from "../redux/actions/dataActions";
 import { connect } from "react-redux";
+
+const styles = theme => ({
+  ...theme.profileTheme,
+  paperComments: {
+    padding: 10
+  }
+});
 
 class objectDiagram extends Component {
   constructor(props) {
@@ -26,9 +37,10 @@ class objectDiagram extends Component {
     const projectId = this.props.match.params.projectId;
     const diagramId = this.props.match.params.diagramId;
     const {
-      diagram: { diagram, diagramUserId },
+      diagram: { diagram, diagramUserId, comments },
       loading
     } = this.props.data;
+    const { classes } = this.props;
     let copyDiagram = [];
     if (diagram !== undefined) {
       copyDiagram = JSON.parse(diagram);
@@ -43,10 +55,16 @@ class objectDiagram extends Component {
     ) : (
       <Loader />
     );
+    let viewComments = !loading ? <Comments comments={comments} /> : <Loader />;
     return (
       <Grid container spacing={2}>
-        <Grid item sm={2} xs={12} />
-        <Grid item sm={10} xs={12}>
+        <Grid item sm={3} xs={12}>
+          <Paper className={classes.paperComments}>
+            <CommentForm diagramId={diagramId} projectId={projectId} />
+            {viewComments}
+          </Paper>
+        </Grid>
+        <Grid item sm={9} xs={12}>
           {viewDiagram}
         </Grid>
       </Grid>
@@ -55,7 +73,8 @@ class objectDiagram extends Component {
 }
 
 objectDiagram.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 const mapActionsToProps = {
@@ -69,4 +88,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(objectDiagram);
+)(withStyles(styles)(objectDiagram));
