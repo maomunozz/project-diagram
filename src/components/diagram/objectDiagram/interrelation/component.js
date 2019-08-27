@@ -1,7 +1,7 @@
 import React from "react";
 import style from "styled-components";
-import ActionIcon from "./ActionIcon";
-import ChipIconAction from "../chipIconsAction";
+import InterrelationIcon from "./InterrelationIcon";
+import ChipIconInterrelation from "../chipIconsInterrelation";
 //Icons
 import { ChevronDown, Close } from "mdi-material-ui";
 //MUI
@@ -27,7 +27,7 @@ const styles = theme => ({
   }
 });
 
-const ActionStyle = style.div`
+const InterrelationStyle = style.div`
   background-color: #ffffff;
   display: flex;
   flex-flow: row nowrap;
@@ -35,7 +35,7 @@ const ActionStyle = style.div`
   width: ${props => props.width}px;
   height: ${props => props.height}px;
   border-radius: .5rem;
-  border: 3px dotted #000;
+  border-style: solid dashed;
 `;
 
 const Name = style.span`
@@ -43,29 +43,29 @@ const Name = style.span`
   padding-top: 0.25rem;
 `;
 
-export type ActionProps = DiagComponentProps & {
+export type InterrelationProps = DiagComponentProps & {
   name: string
 };
 
-const Action = (props: ActionProps) => (
-  <ActionStyle width={props.model.width} height={props.model.height}>
+const Interrelation = (props: InterrelationProps) => (
+  <InterrelationStyle width={props.model.width} height={props.model.height}>
     <Name>
-      <ActionIcon pathIcon={props.model.name} />
+      <InterrelationIcon pathIcon={props.model.name} />
     </Name>
-  </ActionStyle>
+  </InterrelationStyle>
 );
 
 /*
  * Container
  * ==================================== */
 
-type ActionComponentProps = DiagComponentProps;
-type ActionComponentState = {
+type InterrelationComponentProps = DiagComponentProps;
+type InterrelationComponentState = {
   name: string
 };
-class ActionComponent extends React.PureComponent<
-  ActionComponentProps,
-  ActionComponentState
+class InterrelationComponent extends React.PureComponent<
+  InterrelationComponentProps,
+  InterrelationComponentState
 > {
   state = {
     name: this.props.model.name,
@@ -96,25 +96,19 @@ class ActionComponent extends React.PureComponent<
 
   render() {
     const { classes } = this.props;
-    const actions = [
-      "desplazar",
-      "agarrar",
-      "lanzar",
-      "levantar",
-      "presionar",
-      "gestualizar",
-      "soltar",
-      "retroalimentar",
-      "leer",
-      "girar",
-      "introducir",
-      "adherir",
-      "arrastrar",
-      "ajustar"
+    const interrelations = [
+      "comunicación multidireccional",
+      "comunicación bidireccional",
+      "comunicación digital",
+      "choque",
+      "roce",
+      "toque",
+      "encaje",
+      "dependencia"
     ];
     return (
       <>
-        <Action
+        <Interrelation
           {...this.props}
           name={this.state.name}
           tooltip={this.state.type}
@@ -131,13 +125,13 @@ class ActionComponent extends React.PureComponent<
             </IconButton>
           </DialogActions>
           <DialogContent>
-            {actions.map(action => {
+            {interrelations.map(interrelation => {
               return (
                 <Chip
-                  key={action}
-                  id={action}
-                  avatar={<ChipIconAction pathIcon={action} />}
-                  label={action}
+                  key={interrelation}
+                  id={interrelation}
+                  avatar={<ChipIconInterrelation pathIcon={interrelation} />}
+                  label={interrelation}
                   onClick={this.handleClick}
                   className={classes.chip}
                 />
@@ -150,4 +144,4 @@ class ActionComponent extends React.PureComponent<
   }
 }
 
-export default withStyles(styles)(ActionComponent);
+export default withStyles(styles)(InterrelationComponent);

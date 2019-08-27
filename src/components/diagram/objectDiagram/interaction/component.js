@@ -1,7 +1,7 @@
 import React from "react";
 import style from "styled-components";
-import ActionIcon from "./ActionIcon";
-import ChipIconAction from "../chipIconsAction";
+import InteractionIcon from "./InteractionIcon";
+import ChipIconInteraction from "../chipIconsInteraction";
 //Icons
 import { ChevronDown, Close } from "mdi-material-ui";
 //MUI
@@ -27,15 +27,15 @@ const styles = theme => ({
   }
 });
 
-const ActionStyle = style.div`
+const InteractionStyle = style.div`
   background-color: #ffffff;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   width: ${props => props.width}px;
   height: ${props => props.height}px;
-  border-radius: .5rem;
-  border: 3px dotted #000;
+  border-radius: 77rem;
+  border-style: dashed solid;
 `;
 
 const Name = style.span`
@@ -43,29 +43,29 @@ const Name = style.span`
   padding-top: 0.25rem;
 `;
 
-export type ActionProps = DiagComponentProps & {
+export type InteractionProps = DiagComponentProps & {
   name: string
 };
 
-const Action = (props: ActionProps) => (
-  <ActionStyle width={props.model.width} height={props.model.height}>
+const Interaction = (props: InteractionProps) => (
+  <InteractionStyle width={props.model.width} height={props.model.height}>
     <Name>
-      <ActionIcon pathIcon={props.model.name} />
+      <InteractionIcon pathIcon={props.model.name} />
     </Name>
-  </ActionStyle>
+  </InteractionStyle>
 );
 
 /*
  * Container
  * ==================================== */
 
-type ActionComponentProps = DiagComponentProps;
-type ActionComponentState = {
+type InteractionComponentProps = DiagComponentProps;
+type InteractionComponentState = {
   name: string
 };
-class ActionComponent extends React.PureComponent<
-  ActionComponentProps,
-  ActionComponentState
+class InteractionComponent extends React.PureComponent<
+  InteractionComponentProps,
+  InteractionComponentState
 > {
   state = {
     name: this.props.model.name,
@@ -96,25 +96,36 @@ class ActionComponent extends React.PureComponent<
 
   render() {
     const { classes } = this.props;
-    const actions = [
-      "desplazar",
-      "agarrar",
-      "lanzar",
-      "levantar",
+    const interactions = [
+      "conectar",
       "presionar",
-      "gestualizar",
-      "soltar",
-      "retroalimentar",
-      "leer",
-      "girar",
       "introducir",
-      "adherir",
-      "arrastrar",
-      "ajustar"
+      "empujar",
+      "doblar",
+      "cortar",
+      "parar",
+      "esperar",
+      "encender",
+      "agarrar",
+      "soltar",
+      "sacar",
+      "quitar",
+      "levantar",
+      "girar",
+      "mover",
+      "comenzar",
+      "finalizar",
+      "accionar",
+      "apagar",
+      "bajar",
+      "subir",
+      "salir",
+      "abrir",
+      "poner"
     ];
     return (
       <>
-        <Action
+        <Interaction
           {...this.props}
           name={this.state.name}
           tooltip={this.state.type}
@@ -131,13 +142,13 @@ class ActionComponent extends React.PureComponent<
             </IconButton>
           </DialogActions>
           <DialogContent>
-            {actions.map(action => {
+            {interactions.map(interaction => {
               return (
                 <Chip
-                  key={action}
-                  id={action}
-                  avatar={<ChipIconAction pathIcon={action} />}
-                  label={action}
+                  key={interaction}
+                  id={interaction}
+                  avatar={<ChipIconInteraction pathIcon={interaction} />}
+                  label={interaction}
                   onClick={this.handleClick}
                   className={classes.chip}
                 />
@@ -150,4 +161,4 @@ class ActionComponent extends React.PureComponent<
   }
 }
 
-export default withStyles(styles)(ActionComponent);
+export default withStyles(styles)(InteractionComponent);

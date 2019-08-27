@@ -4,63 +4,49 @@ import type { DiagComponentProps } from "react-flow-diagram";
 //MUI
 import Tooltip from "@material-ui/core/Tooltip";
 
-/*
- * Presentational
- * ==================================== */
-
-const ObjectSoftwareStyle = style.div`
+const ReactionStyle = style.div`
+  background-color: #fff;
   display: flex;
-  position: relative;
   flex-flow: row nowrap;
-  align-items: center;
+  align-items: ${props => (props.isEditing ? "stretch" : "center")};
   width: ${props => props.width}px;
   height: ${props => props.height}px;
-  justify-content: center;
-  font-size: .5rem;
-  border-radius: .5em;
-  transform: skew(20deg) translateX(-2em);
-  background: #4db6ac;
+  border-bottom-right-radius: 3rem;
+  border-bottom-left-radius: 3rem;
   border: 3px solid #000;
 `;
 
 const Name = style.span`
-  position: absolute;
-  top: 100%;
-  width: 200%;
+  flex: 1 0;
   padding: .5em;
   font-size: .8rem;
   font-weight: bold;
-  transform: skew(-20deg) translateX(-1em);
 `;
 
 const EditName = style.textarea`
-  position: absolute;
-  top: 100%;
-  width: 200%;
   padding: .5em;
-  border: none;
   font-size: .8rem;
   text-align: center;
-  border-radius: .1rem;
   resize: none;
-  z-index: 10;
-  background-color: rgba(255, 255, 255, 0.8);
-  transform: skew(-20deg) translateX(-1em);
+  border: none;
+  border-radius: .5rem;
 `;
 
-export type ObjectSoftwareProps = DiagComponentProps & {
+export type ReactionProps = DiagComponentProps & {
   name: string,
   isEditing: boolean,
   toggleEdit: boolean => void,
-  refreshName: (SyntheticObjectSoftware<HTMLTextAreaElement>) => void,
-  handleKeyPress: (
-    SyntheticKeyboardObjectSoftware<HTMLTextAreaElement>
-  ) => void,
+  refreshName: (SyntheticEvent<HTMLTextAreaElement>) => void,
+  handleKeyPress: (SyntheticKeyboardEvent<HTMLTextAreaElement>) => void,
   handleRef: HTMLTextAreaElement => void
 };
-const ObjectSoftware = (props: ObjectSoftwareProps) => (
-  <Tooltip title="Objeto Software" placement="top">
-    <ObjectSoftwareStyle width={props.model.width} height={props.model.height}>
+const Reaction = (props: ReactionProps) => (
+  <Tooltip title="Reacción" placement="top">
+    <ReactionStyle
+      width={props.model.width}
+      height={props.model.height}
+      isEditing={props.isEditing}
+    >
       <EditName
         value={props.name}
         onChange={props.refreshName}
@@ -74,7 +60,7 @@ const ObjectSoftware = (props: ObjectSoftwareProps) => (
       >
         {props.model.name}
       </Name>
-    </ObjectSoftwareStyle>
+    </ReactionStyle>
   </Tooltip>
 );
 
@@ -82,14 +68,14 @@ const ObjectSoftware = (props: ObjectSoftwareProps) => (
  * Container
  * ==================================== */
 
-type ObjectSoftwareComponentProps = DiagComponentProps;
-type ObjectSoftwareComponentState = {
+type ReactionComponentProps = DiagComponentProps;
+type ReactionComponentState = {
   isEditing: boolean,
   name: string
 };
-class ObjectSoftwareComponent extends React.PureComponent<
-  ObjectSoftwareComponentProps,
-  ObjectSoftwareComponentState
+class ReactionComponent extends React.PureComponent<
+  ReactionComponentProps,
+  ReactionComponentState
 > {
   textarea: ?HTMLTextAreaElement;
 
@@ -116,13 +102,11 @@ class ObjectSoftwareComponent extends React.PureComponent<
     this.setState({ isEditing });
   };
 
-  refreshName = (ev: SyntheticObjectSoftware<HTMLTextAreaElement>) => {
+  refreshName = (ev: SyntheticEvent<HTMLTextAreaElement>) => {
     this.setState({ name: ev.currentTarget.value });
   };
 
-  handleKeyPress = (
-    ev: SyntheticKeyboardObjectSoftware<HTMLTextAreaElement>
-  ) => {
+  handleKeyPress = (ev: SyntheticKeyboardEvent<HTMLTextAreaElement>) => {
     switch (ev.key) {
       case "Enter":
         this.toggleEdit(false);
@@ -138,7 +122,7 @@ class ObjectSoftwareComponent extends React.PureComponent<
 
   render() {
     return (
-      <ObjectSoftware
+      <Reaction
         {...this.props}
         isEditing={this.state.isEditing}
         name={this.state.name}
@@ -151,4 +135,4 @@ class ObjectSoftwareComponent extends React.PureComponent<
   }
 }
 
-export default ObjectSoftwareComponent;
+export default ReactionComponent;

@@ -10,15 +10,33 @@ import ObjectSoftware from "./object-software/component";
 import objectSoftwareIcon from "./object-software/icon";
 import Attribute from "./attribute/component";
 import attributeIcon from "./attribute/icon";
+import Reaction from "./reaction/component";
+import reactionIcon from "./reaction/icon";
+import Interrelation from "./interrelation/component";
+import interrelationIcon from "./interrelation/icon";
+import Interaction from "./interaction/component";
+import interactionIcon from "./interaction/icon";
 
 const config = {
   entityTypes: {
+    Interaction: {
+      width: 100,
+      height: 45
+    },
+    Reaction: {
+      width: 110,
+      height: 100
+    },
+    Interrelation: {
+      width: 100,
+      height: 45
+    },
     Attribute: {
       width: 110,
       height: 80
     },
     Action: {
-      width: 110,
+      width: 100,
       height: 45
     },
     ObjectHardware: {
@@ -42,6 +60,18 @@ const config = {
 };
 
 const customEntities = {
+  Interaction: {
+    component: Interaction,
+    icon: interactionIcon
+  },
+  Reaction: {
+    component: Reaction,
+    icon: reactionIcon
+  },
+  Interrelation: {
+    component: Interrelation,
+    icon: interrelationIcon
+  },
   Attribute: {
     component: Attribute,
     icon: attributeIcon

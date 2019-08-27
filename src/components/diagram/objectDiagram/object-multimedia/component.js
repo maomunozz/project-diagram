@@ -20,7 +20,7 @@ const ObjectMultimediaStyle = style.div`
   justify-content: center;
   font-size: .5rem;
   transform: rotate(45deg) translateY(3em);
-  border: 4px solid #000;
+  border: 3px solid #000;
 `;
 
 const Name = style.span`

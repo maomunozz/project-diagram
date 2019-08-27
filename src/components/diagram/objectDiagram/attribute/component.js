@@ -15,7 +15,7 @@ const AttributeStyle = style.div`
   width: ${props => props.width}px;
   height: ${props => props.height}px;
   border-radius: .5rem;
-  border: 4px solid #000;
+  border: 3px solid #000;
 `;
 
 const Name = style.span`

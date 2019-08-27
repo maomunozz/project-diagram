@@ -92,6 +92,7 @@ class ObjectDiagram extends Component {
 
   componentWillUnmount() {
     this._isMounted = false;
+    diagramStore.dispatch(setEntities([]));
   }
 
   render() {
@@ -101,7 +102,8 @@ class ObjectDiagram extends Component {
         authenticated,
         credentials: { userId }
       },
-      diagramUserId
+      diagramUserId,
+      type
     } = this.props;
 
     return (

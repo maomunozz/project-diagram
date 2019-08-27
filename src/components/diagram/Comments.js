@@ -77,11 +77,15 @@ class Comments extends Component {
                           {`${firstNameUser} `}
                         </Typography>
                         <Typography component="span" variant="body2">
-                          {body}
+                          {`${body} - `}
                         </Typography>
                       </>
                     }
-                    secondary={dayjs(createdAt).fromNow()}
+                    secondary={
+                      <Typography component="span" variant="caption">
+                        {dayjs(createdAt).fromNow()}
+                      </Typography>
+                    }
                   />
                 </ListItem>
                 <Divider

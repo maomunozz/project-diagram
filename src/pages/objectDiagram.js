@@ -37,13 +37,17 @@ class objectDiagram extends Component {
     const projectId = this.props.match.params.projectId;
     const diagramId = this.props.match.params.diagramId;
     const {
-      diagram: { diagram, diagramUserId, comments },
+      diagram: { diagram, diagramUserId, comments, type },
       loading
     } = this.props.data;
     const { classes } = this.props;
     let copyDiagram = [];
+    let copyType = "";
     if (diagram !== undefined) {
       copyDiagram = JSON.parse(diagram);
+    }
+    if (type !== undefined) {
+      copyType = type;
     }
     let viewDiagram = !loading ? (
       <ObjectDiagram
@@ -51,10 +55,12 @@ class objectDiagram extends Component {
         diagramId={diagramId}
         diagram={copyDiagram}
         diagramUserId={diagramUserId}
+        type={copyType}
       />
     ) : (
       <Loader />
     );
+
     let viewComments = !loading ? <Comments comments={comments} /> : <Loader />;
     return (
       <Grid container spacing={2}>

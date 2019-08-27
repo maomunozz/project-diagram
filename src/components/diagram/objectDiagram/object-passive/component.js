@@ -19,7 +19,7 @@ const ObjectPassiveStyle = style.div`
   border-radius: .5em;
   justify-content: center;
   font-size: .5rem;
-  border: 4px solid #000;
+  border: 3px solid #000;
 `;
 
 const Name = style.span`

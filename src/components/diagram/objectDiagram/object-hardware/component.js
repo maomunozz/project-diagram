@@ -20,7 +20,7 @@ const ObjectHardwareStyle = style.div`
   border-radius: 77rem;
   justify-content: center;
   font-size: .5rem;
-  border: 4px solid #000;
+  border: 3px solid #000;
 `;
 
 const Name = style.span`

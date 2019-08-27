@@ -59,6 +59,7 @@ class project extends Component {
             key={diagram.diagramId}
             projectUserId={project.projectUserId}
             projectId={project.projectId}
+            type="objectDiagram"
           />
         ) : null
       )
@@ -74,6 +75,7 @@ class project extends Component {
             key={diagram.diagramId}
             projectUserId={project.projectUserId}
             projectId={project.projectId}
+            type="interrelationDiagram"
           />
         ) : null
       )
@@ -89,6 +91,7 @@ class project extends Component {
             key={diagram.diagramId}
             projectUserId={project.projectUserId}
             projectId={project.projectId}
+            type="interactionDiagram"
           />
         ) : null
       )
