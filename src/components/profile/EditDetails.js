@@ -24,13 +24,17 @@ class EditDetails extends Component {
     bio: "",
     location: "",
     profession: "",
+    firstName: "",
+    lastName: "",
     open: false
   };
   mapUserDetailsToState = credentials => {
     this.setState({
       bio: credentials.bio ? credentials.bio : "",
       location: credentials.location ? credentials.location : "",
-      profession: credentials.profession ? credentials.profession : ""
+      profession: credentials.profession ? credentials.profession : "",
+      firstName: credentials.firstName ? credentials.firstName : "",
+      lastName: credentials.lastName ? credentials.lastName : ""
     });
   };
   handleOpen = () => {
@@ -51,6 +55,8 @@ class EditDetails extends Component {
   };
   handleSubmit = event => {
     const userDetails = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
       bio: this.state.bio,
       profession: this.state.profession,
       location: this.state.location
@@ -58,7 +64,9 @@ class EditDetails extends Component {
     if (
       userDetails.bio === "" &&
       userDetails.profession === "" &&
-      userDetails.location === ""
+      userDetails.location === "" &&
+      userDetails.lastName === "" &&
+      userDetails.firstName === ""
     ) {
       this.handleCLose();
     } else {
@@ -84,6 +92,28 @@ class EditDetails extends Component {
           <DialogTitle>Editar perfil</DialogTitle>
           <DialogContent>
             <form>
+              <TextField
+                name="firstName"
+                type="text"
+                label="Nombre"
+                placeholder="Ingresa tu Nombre"
+                className={classes.textField}
+                value={this.state.firstName}
+                onChange={this.handleChange}
+                fullWidth
+                variant="outlined"
+              />
+              <TextField
+                name="lastName"
+                type="text"
+                label="Apellido"
+                placeholder="Ingresa tu Apellido"
+                className={classes.textField}
+                value={this.state.lastName}
+                onChange={this.handleChange}
+                fullWidth
+                variant="outlined"
+              />
               <TextField
                 name="profession"
                 type="text"
