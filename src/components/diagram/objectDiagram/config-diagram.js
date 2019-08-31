@@ -16,23 +16,29 @@ import Interrelation from "./interrelation/component";
 import interrelationIcon from "./interrelation/icon";
 import Interaction from "./interaction/component";
 import interactionIcon from "./interaction/icon";
+import Point from "./point/component";
+import pointIcon from "./point/icon";
 
 const config = {
   entityTypes: {
+    Point: {
+      width: 45,
+      height: 45
+    },
     Interaction: {
-      width: 100,
+      width: 60,
       height: 45
     },
     Reaction: {
-      width: 110,
-      height: 100
+      width: 100,
+      height: 90
     },
     Interrelation: {
       width: 100,
       height: 45
     },
     Attribute: {
-      width: 110,
+      width: 100,
       height: 80
     },
     Action: {
@@ -60,6 +66,10 @@ const config = {
 };
 
 const customEntities = {
+  Point: {
+    component: Point,
+    icon: pointIcon
+  },
   Interaction: {
     component: Interaction,
     icon: interactionIcon

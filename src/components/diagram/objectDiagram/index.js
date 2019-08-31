@@ -25,6 +25,15 @@ const styles = theme => ({
     flexGrow: 1
   },
   diagramContainer: {
+    "@media (min-width: 1000px)": {
+      display: "flex",
+      height: "100%",
+      width: "100%",
+      minHeight: "32rem",
+      maxHeight: "32rem",
+      minWidth: "50rem",
+      maxWidth: "50rem"
+    },
     "@media (min-width: 1200px)": {
       display: "flex",
       height: "100%",
@@ -42,9 +51,23 @@ const styles = theme => ({
       maxHeight: "41rem",
       minWidth: "65.5rem",
       maxWidth: "65.5rem"
+    },
+    "@media (min-width: 1920px)": {
+      display: "flex",
+      height: "100%",
+      width: "100%",
+      minHeight: "62rem",
+      maxHeight: "62rem",
+      minWidth: "70rem",
+      maxWidth: "70rem"
     }
   },
   buttonSave: {
+    "@media (min-width: 1000px)": {
+      position: "absolute",
+      bottom: "1.5rem",
+      right: "1.5rem"
+    },
     "@media (min-width: 1200px)": {
       position: "absolute",
       bottom: "2.8rem",
@@ -54,6 +77,11 @@ const styles = theme => ({
       position: "absolute",
       bottom: "2rem",
       right: "7rem"
+    },
+    "@media (min-width: 1920px)": {
+      position: "absolute",
+      bottom: "2rem",
+      right: "14rem"
     }
   }
 });

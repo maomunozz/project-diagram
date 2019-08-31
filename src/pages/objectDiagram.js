@@ -45,6 +45,7 @@ class objectDiagram extends Component {
     let copyType = "";
     if (diagram !== undefined) {
       copyDiagram = JSON.parse(diagram);
+      console.log(copyDiagram);
     }
     if (type !== undefined) {
       copyType = type;

@@ -3,14 +3,15 @@ import style from "styled-components";
 import ActionIcon from "./ActionIcon";
 import ChipIconAction from "../chipIconsAction";
 //Icons
-import { ChevronDown, Close } from "mdi-material-ui";
+import { Close } from "mdi-material-ui";
 //MUI
 import withStyles from "@material-ui/core/styles/withStyles";
-import IconButton from "@material-ui/core/IconButton";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import Chip from "@material-ui/core/Chip";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Fab from "@material-ui/core/Fab";
 
 import type { DiagComponentProps } from "react-flow-diagram";
 
@@ -114,22 +115,15 @@ class ActionComponent extends React.PureComponent<
     ];
     return (
       <>
-        <Action
-          {...this.props}
-          name={this.state.name}
-          tooltip={this.state.type}
-        />
-        <div className={classes.buttonRoot}>
-          <IconButton className={classes.buttonIcon} onClick={this.handleOpen}>
-            <ChevronDown />
-          </IconButton>
+        <div onDoubleClick={this.handleOpen}>
+          <Action
+            {...this.props}
+            name={this.state.name}
+            tooltip={this.state.type}
+          />
         </div>
         <Dialog open={this.state.open} maxWidth="xs" onClose={this.handleClose}>
-          <DialogActions>
-            <IconButton className={classes.button} onClick={this.handleClose}>
-              <Close />
-            </IconButton>
-          </DialogActions>
+          <DialogTitle>Selecciona una acción</DialogTitle>
           <DialogContent>
             {actions.map(action => {
               return (
@@ -144,6 +138,11 @@ class ActionComponent extends React.PureComponent<
               );
             })}
           </DialogContent>
+          <DialogActions>
+            <Fab onClick={this.handleClose} color="secondary" size="small">
+              <Close />
+            </Fab>
+          </DialogActions>
         </Dialog>
       </>
     );
