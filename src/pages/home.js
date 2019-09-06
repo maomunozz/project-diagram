@@ -10,8 +10,10 @@ import Typography from "@material-ui/core/Typography";
 const styles = theme => ({
   container: {
     marginTop: "1rem",
-    textAlign: "left",
     alignItems: "center"
+  },
+  containerButton: {
+    textAlign: "center"
   },
   button: {
     position: "relative",
@@ -67,33 +69,43 @@ class home extends Component {
           <Grid container spacing={1} className={classes.container}>
             <Grid item xs={6}>
               <Typography variant="body1">
-                Si tienes una cuenta de gmail o ya te registraste puedes
-                comenzar a usar Bisqua ingresando en el siguiente enlace.
+                Si tienes una cuenta de gmail o ya te registraste puedes usar
+                Bisqua ingresando aqui{" "}
+                <span role="img" aria-label="hand">
+                  👇
+                </span>
               </Typography>
-              <Link to="/login">
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.button}
-                >
-                  Iniciar Sesión
-                </Button>
-              </Link>
+              <div className={classes.containerButton}>
+                <Link to="/login">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                  >
+                    Iniciar Sesión
+                  </Button>
+                </Link>
+              </div>
             </Grid>
             <Grid item xs={6}>
               <Typography variant="body1">
-                Si no tienes una cuenta puedes registrarte en Bisqua llenando el
-                formulario que se encuentra en el siguiente enlace.
+                Si no tienes una cuenta puedes registrarte en Bisqua ingresando
+                en el siguiente enlace{" "}
+                <span role="img" aria-label="hand">
+                  👇
+                </span>
               </Typography>
-              <Link to="/signup">
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.button}
-                >
-                  Registrate
-                </Button>
-              </Link>
+              <div className={classes.containerButton}>
+                <Link to="/signup">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                  >
+                    Registrate
+                  </Button>
+                </Link>
+              </div>
             </Grid>
           </Grid>
         </Grid>

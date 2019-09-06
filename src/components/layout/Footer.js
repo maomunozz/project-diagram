@@ -32,7 +32,27 @@ class Footer extends Component {
             justify="center"
           >
             <Typography variant="caption">
-              Desarrollado por: Grupo Camaleón
+              Desarrollado por:{" "}
+              <a
+                href="https://www.linkedin.com/in/maomunozz18/"
+                id="linkMaoz"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span role="img" aria-label="rocket">
+                  🚀
+                </span>{" "}
+                Mauricio Muñoz{" "}
+              </a>
+              -{" "}
+              <a
+                href="http://eisc.univalle.edu.co/index.php/grupos-investigacion/camaleon"
+                id="linkMaoz"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Camaleón
+              </a>
             </Typography>
           </Grid>
         </footer>

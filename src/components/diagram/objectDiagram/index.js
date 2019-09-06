@@ -130,8 +130,7 @@ class ObjectDiagram extends Component {
         authenticated,
         credentials: { userId }
       },
-      diagramUserId,
-      type
+      diagramUserId
     } = this.props;
 
     return (
