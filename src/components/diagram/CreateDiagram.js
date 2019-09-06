@@ -92,9 +92,9 @@ class CreateDiagram extends Component {
       ui: { loading }
     } = this.props;
     const types = [
-      { value: "1", label: "Objetos" },
-      { value: "2", label: "Interrelación reacción" },
-      { value: "3", label: "Interacciones" }
+      { value: "1", label: "Objetos/Acciones" },
+      { value: "2", label: "Interrelación/Reacción" },
+      { value: "3", label: "Interacciones/Intra-acciones" }
     ];
     return (
       <>

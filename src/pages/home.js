@@ -21,7 +21,7 @@ const styles = theme => ({
   },
   form: {
     margin: "0 auto",
-    padding: 20,
+    padding: 40,
     backgroundColor: "white"
   },
   image: {
