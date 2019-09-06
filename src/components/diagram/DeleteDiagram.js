@@ -7,6 +7,8 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import Typography from "@material-ui/core/Typography";
 //Icons
 import { Delete } from "mdi-material-ui";
 //Redux
@@ -45,9 +47,12 @@ class DeleteDiagram extends Component {
           fullWidth
           maxWidth="xs"
         >
-          <DialogTitle>
-            Estas seguro de que quieres eliminar este diagrama ?
-          </DialogTitle>
+          <DialogTitle>Eliminar Diagrama</DialogTitle>
+          <DialogContent>
+            <Typography variant="h6">
+              Estas seguro de que quieres eliminar este diagrama?
+            </Typography>
+          </DialogContent>
           <DialogActions>
             <Button
               onClick={this.handleClose}

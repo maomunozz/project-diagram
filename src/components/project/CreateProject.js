@@ -15,7 +15,11 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 //Icons
-import { BookmarkRemove, BookmarkCheck, FolderPlus } from "mdi-material-ui";
+import {
+  BookmarkRemove,
+  BookmarkCheck,
+  PlusCircleOutline
+} from "mdi-material-ui";
 //Redux
 import { connect } from "react-redux";
 import {
@@ -190,7 +194,7 @@ class CreateProject extends Component {
           tip="Crear nuevo projecto"
           btnClassName={classes.btnCreateProject}
         >
-          <FolderPlus className={classes.colorIcon} />
+          <PlusCircleOutline className={classes.colorIcon} />
         </CustomButton>
         <Dialog
           open={this.state.open}

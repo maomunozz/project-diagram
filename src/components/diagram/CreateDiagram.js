@@ -13,7 +13,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import MenuItem from "@material-ui/core/MenuItem";
 //Icons
-import { NotePlus } from "mdi-material-ui";
+import { PlusCircleOutline } from "mdi-material-ui";
 //Redux
 import { connect } from "react-redux";
 import { createDiagram, clearErrors } from "../../redux/actions/dataActions";
@@ -103,7 +103,7 @@ class CreateDiagram extends Component {
           tip="Crear nuevo diagrama"
           btnClassName={classes.btnCreateDiagram}
         >
-          <NotePlus className={classes.colorIcon} />
+          <PlusCircleOutline className={classes.colorIcon} />
         </CustomButton>
         <Dialog
           open={this.state.open}

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 //Dayjs
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -61,7 +61,7 @@ class Comments extends Component {
             } = comment;
 
             return (
-              <Fragment key={commentId}>
+              <div key={commentId}>
                 <ListItem className={classes.listItem}>
                   <ListItemAvatar>
                     <Avatar alt="avatar" src={userImage} />
@@ -93,7 +93,7 @@ class Comments extends Component {
                   component="li"
                   className={classes.divider}
                 />
-              </Fragment>
+              </div>
             );
           })}
         </List>

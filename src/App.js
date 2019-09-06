@@ -6,6 +6,7 @@ import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import { generalTheme } from "./util/theme";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
+import CssBaseline from "@material-ui/core/CssBaseline";
 //Redux
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -14,6 +15,7 @@ import { logoutUser, getUserData } from "./redux/actions/userActions";
 //Components
 import Navbar from "./components/layout/Navbar";
 import AuthRoute from "./util/AuthRoute";
+import Footer from "./components/layout/Footer";
 //Pages
 import dashboard from "./pages/dashboard";
 import project from "./pages/project";
@@ -47,6 +49,7 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
         <Provider store={store}>
           <BrowserRouter>
+            <CssBaseline />
             <Navbar />
             <div className="container">
               <Switch>
@@ -66,6 +69,7 @@ class App extends Component {
                 />
               </Switch>
             </div>
+            <Footer />
           </BrowserRouter>
         </Provider>
       </MuiThemeProvider>

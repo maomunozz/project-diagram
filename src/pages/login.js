@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
-import AppIcon from "../images/favicon.ico";
+import AppIcon from "../images/biscuaIcono.svg";
 import { Link, Redirect } from "react-router-dom";
 import { GoogleLogin } from "react-google-login";
 //MUI
@@ -18,7 +18,10 @@ import { connect } from "react-redux";
 import { loginUser, signupUserWhitGoogle } from "../redux/actions/userActions";
 
 const styles = theme => ({
-  ...theme.formTheme
+  ...theme.formTheme,
+  biscuaIcon: {
+    height: "100px"
+  }
 });
 
 class login extends Component {
@@ -82,10 +85,7 @@ class login extends Component {
         sm={6}
         lg={4}
       >
-        <img src={AppIcon} alt="Icon" className={classes.image} />
-        {/* <Typography variant="h4" className={classes.pageTitle}>
-          Login
-        </Typography> */}
+        <img src={AppIcon} alt="Icon" className={classes.biscuaIcon} />
         <GoogleLogin
           clientId="731934267377-8krtcq68rcc51mamje4k2kgbhblv1912.apps.googleusercontent.com"
           buttonText="Ingresar con Google"
@@ -96,7 +96,6 @@ class login extends Component {
             <Button
               type="submit"
               variant="contained"
-              color="secondary"
               className={classes.googleButton}
               disabled={loadingGoogle}
               onClick={renderProps.onClick}

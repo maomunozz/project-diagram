@@ -5,14 +5,11 @@ import Button from "@material-ui/core/Button";
 const SignedOutLinks = () => {
   return (
     <>
-      <Button color="inherit" component={Link} to="/">
-        Home
-      </Button>
       <Button color="inherit" component={Link} to="/login">
-        Login
+        Iniciar Sesión
       </Button>
       <Button color="inherit" component={Link} to="/signup">
-        Signup
+        Registrate
       </Button>
     </>
   );

@@ -11,6 +11,7 @@ import EditDetailsProject from "./EditDetailsProject";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
+import Divider from "@material-ui/core/Divider";
 //Icons
 import CalendarToday from "@material-ui/icons/CalendarToday";
 //Redux
@@ -26,6 +27,10 @@ const styles = theme => ({
   },
   chip: {
     margin: theme.spacing(1)
+  },
+  divider: {
+    height: "2px",
+    margin: 10
   }
 });
 
@@ -64,6 +69,12 @@ class ProjectDetails extends Component {
             <Typography variant="body2">
               Creado por: {firstNameUser} {lastNameUser}
             </Typography>
+            <hr />
+            <Divider
+              variant="fullWidth"
+              component="li"
+              className={classes.divider}
+            />
             <hr />
             <Typography variant="body2" color="primary">
               Observadores

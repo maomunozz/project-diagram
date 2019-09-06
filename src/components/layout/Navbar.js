@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import AppIcon from "../../images/biscuaIcon3.svg";
 //Components
 import SignedOutLinks from "./SignedOutLinks";
 import SignedInLinks from "./SignedInLinks";
@@ -7,7 +8,7 @@ import SignedInLinks from "./SignedInLinks";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import withStyles from "@material-ui/core/styles/withStyles";
-import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 //Redux
 import { connect } from "react-redux";
 
@@ -15,8 +16,7 @@ const styles = theme => ({
   ...theme.formTheme,
   buttonEdit: {
     position: "relative",
-    left: "70%",
-    marginTop: 20
+    left: "70%"
   },
   button: {
     float: "right"
@@ -28,14 +28,17 @@ const styles = theme => ({
     color: "#fff"
   },
   root: {
-    flexGrow: 1,
-    marginBottom: 80
+    flexGrow: 1
   },
   menuButton: {
     marginRight: theme.spacing(2)
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
+    display: "inline-flex"
+  },
+  iconNav: {
+    height: "45px"
   }
 });
 
@@ -51,13 +54,20 @@ class Navbar extends Component {
         <SignedOutLinks />
       </>
     );
+    const home = authenticated ? (
+      <Link to="/dashboard">
+        <img src={AppIcon} alt="Icon" className={classes.iconNav} />
+      </Link>
+    ) : (
+      <Link to="/">
+        <img src={AppIcon} alt="Icon" className={classes.iconNav} />
+      </Link>
+    );
     return (
       <div className={classes.root}>
         <AppBar>
           <Toolbar>
-            <Typography variant="h6" className={classes.title}>
-              Proyecto Diagramas
-            </Typography>
+            <div className={classes.title}>{home}</div>
             <div color="inherit">{links}</div>
           </Toolbar>
         </AppBar>

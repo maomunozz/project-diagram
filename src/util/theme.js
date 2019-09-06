@@ -1,15 +1,15 @@
 export const generalTheme = {
   palette: {
     primary: {
-      main: "#1976d2",
-      light: "#63a4ff",
-      dark: "#004ba0",
+      main: "#09476E",
+      light: "#3a6b8b",
+      dark: "#06314d",
       contrastText: "#ffffff"
     },
     secondary: {
-      main: "#e91e63",
-      light: "#ff6090",
-      dark: "#b0003a",
+      main: "#acacac",
+      light: "#bcbcbc",
+      dark: "#787878",
       contrastText: "#000000"
     }
   },
@@ -45,12 +45,17 @@ export const generalTheme = {
       position: "absolute"
     },
     link: {
-      color: "#00bcd4"
+      color: "#06314d"
     },
     googleButton: {
       marginTop: 20,
       position: "relative",
-      marginBottom: 10
+      marginBottom: 10,
+      color: "#000",
+      backgroundColor: "#e53935",
+      "&:hover": {
+        backgroundColor: "#ab000d"
+      }
     },
     iconGoogle: {
       marginRight: 10

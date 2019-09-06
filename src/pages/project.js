@@ -121,9 +121,9 @@ class project extends Component {
           <div className={classes.root}>
             <AppBar position="static">
               <Tabs value={activeIndex} onChange={this.handleChange}>
-                <Tab label="Objetos" />
-                <Tab label="Interrelaciones y reacciones" />
-                <Tab label="Interacciones" />
+                <Tab label="Objetos/Acciones" />
+                <Tab label="Interacciones/Intra-acciones" />
+                <Tab label="Interrelaciones/Reacciones" />
                 {authenticated && project.projectUserId === userId ? (
                   <CreateDiagram
                     projectId={this.props.match.params.projectId}
@@ -132,8 +132,8 @@ class project extends Component {
               </Tabs>
             </AppBar>
             {activeIndex === 0 && <TabPanel>{objectDiagrams}</TabPanel>}
-            {activeIndex === 1 && <TabPanel>{interrelationDiagrams}</TabPanel>}
-            {activeIndex === 2 && <TabPanel>{interactionDiagrams}</TabPanel>}
+            {activeIndex === 1 && <TabPanel>{interactionDiagrams}</TabPanel>}
+            {activeIndex === 2 && <TabPanel>{interrelationDiagrams}</TabPanel>}
           </div>
         </Grid>
       </Grid>
