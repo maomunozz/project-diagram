@@ -5,7 +5,8 @@ import {
   LOADING_UI,
   SET_UNAUTHENTICATED,
   LOADING_USER,
-  LOADING_UI_GOOGLE
+  LOADING_UI_GOOGLE,
+  SEND_MAIL
 } from "../types";
 import axios from "axios";
 
@@ -103,4 +104,23 @@ const setAuthorizationHeader = token => {
   const FBIdTolken = `Bearer ${token}`;
   localStorage.setItem("FBIdToken", FBIdTolken);
   axios.defaults.headers.common["Authorization"] = FBIdTolken;
+};
+
+export const passwordReset = userData => dispatch => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post("/passwordReset", userData)
+    .then(response => {
+      dispatch({ type: CLEAR_ERRORS });
+      dispatch({
+        type: SEND_MAIL,
+        payload: response.data.message
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      });
+    });
 };

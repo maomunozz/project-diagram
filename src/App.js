@@ -23,6 +23,7 @@ import login from "./pages/login";
 import signup from "./pages/signup";
 import home from "./pages/home";
 import objectDiagram from "./pages/objectDiagram";
+import resetPassword from "./pages/resetPassword";
 
 const theme = createMuiTheme(generalTheme);
 
@@ -56,6 +57,7 @@ class App extends Component {
                 <Route exact path="/" component={home} />
                 <Route exact path="/login" component={login} />
                 <Route exact path="/signup" component={signup} />
+                <Route exact path="/resetPassword" component={resetPassword} />
                 <AuthRoute exact path="/dashboard" component={dashboard} />
                 <AuthRoute
                   exact

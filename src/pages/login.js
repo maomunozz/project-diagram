@@ -21,6 +21,20 @@ const styles = theme => ({
   ...theme.formTheme,
   biscuaIcon: {
     height: "100px"
+  },
+  loginFooter: {
+    margin: 0,
+    padding: 20,
+    backgroundColor: "rgb(245, 245, 245)",
+    width: "100%"
+  },
+  loginBody: {
+    margin: 0,
+    padding: "20px 20px 10px 20px"
+  },
+  buttonFooter: {
+    margin: "10px auto 10px auto",
+    position: "relative"
   }
 });
 
@@ -77,98 +91,114 @@ class login extends Component {
         container
         spacing={0}
         direction="column"
-        alignItems="center"
-        justify="center"
-        className={classes.form}
         item
         xs={12}
         sm={6}
         lg={4}
+        alignItems="center"
+        justify="center"
+        className={classes.form}
       >
-        <img src={AppIcon} alt="Icon" className={classes.biscuaIcon} />
-        <GoogleLogin
-          clientId="731934267377-8krtcq68rcc51mamje4k2kgbhblv1912.apps.googleusercontent.com"
-          buttonText="Ingresar con Google"
-          onSuccess={this.responseGoogle}
-          onFailure={this.responseGoogle}
-          cookiePolicy={"single_host_origin"}
-          render={renderProps => (
+        <Grid className={classes.loginBody}>
+          <img src={AppIcon} alt="Icon" className={classes.biscuaIcon} />
+          <GoogleLogin
+            clientId="731934267377-8krtcq68rcc51mamje4k2kgbhblv1912.apps.googleusercontent.com"
+            buttonText="Ingresar con Google"
+            onSuccess={this.responseGoogle}
+            onFailure={this.responseGoogle}
+            cookiePolicy={"single_host_origin"}
+            render={renderProps => (
+              <Button
+                type="submit"
+                variant="contained"
+                className={classes.googleButton}
+                disabled={loadingGoogle}
+                onClick={renderProps.onClick}
+                fullWidth
+                size="medium"
+              >
+                <Google className={classes.iconGoogle} /> Inicia sesión con
+                Google
+                {loadingGoogle && (
+                  <CircularProgress
+                    size={30}
+                    className={classes.progress}
+                    color="secondary"
+                  />
+                )}
+              </Button>
+            )}
+          />
+          <form noValidate onSubmit={this.handleSubmit}>
+            <Divider variant="fullWidth" className={classes.divider} />
+            <TextField
+              id="email"
+              name="email"
+              type="email"
+              label="Email"
+              helperText={errors.email}
+              error={errors.email ? true : false}
+              className={classes.textField}
+              value={this.state.email}
+              onChange={this.handleChange}
+              variant="outlined"
+              fullWidth
+            />
+            <TextField
+              id="password"
+              name="password"
+              type="password"
+              label="Password"
+              helperText={errors.password}
+              error={errors.password ? true : false}
+              className={classes.textField}
+              value={this.state.password}
+              onChange={this.handleChange}
+              variant="outlined"
+              fullWidth
+            />
+            {errors.general && (
+              <Typography variant="body2" className={classes.customError}>
+                {errors.general}
+              </Typography>
+            )}
             <Button
               type="submit"
               variant="contained"
-              className={classes.googleButton}
-              disabled={loadingGoogle}
-              onClick={renderProps.onClick}
+              color="primary"
+              className={classes.button}
+              disabled={loading}
               fullWidth
               size="medium"
             >
-              <Google className={classes.iconGoogle} /> Inicia sesión con Google
-              {loadingGoogle && (
-                <CircularProgress
-                  size={30}
-                  className={classes.progress}
-                  color="secondary"
-                />
+              Inicia sesión
+              {loading && (
+                <CircularProgress size={30} className={classes.progress} />
               )}
             </Button>
-          )}
-        />
-        <form noValidate onSubmit={this.handleSubmit}>
-          <Divider variant="fullWidth" className={classes.divider} />
-          <TextField
-            id="email"
-            name="email"
-            type="email"
-            label="Email"
-            helperText={errors.email}
-            error={errors.email ? true : false}
-            className={classes.textField}
-            value={this.state.email}
-            onChange={this.handleChange}
-            variant="outlined"
-            fullWidth
-          />
-          <TextField
-            id="password"
-            name="password"
-            type="password"
-            label="Password"
-            helperText={errors.password}
-            error={errors.password ? true : false}
-            className={classes.textField}
-            value={this.state.password}
-            onChange={this.handleChange}
-            variant="outlined"
-            fullWidth
-          />
-          {errors.general && (
-            <Typography variant="body2" className={classes.customError}>
-              {errors.general}
-            </Typography>
-          )}
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            disabled={loading}
-            fullWidth
-            size="medium"
-          >
-            Inicia sesión
-            {loading && (
-              <CircularProgress size={30} className={classes.progress} />
-            )}
-          </Button>
-          <br />
-          <small>
-            No tienes una cuenta? regístrate
-            <Link to="/signup" className={classes.link}>
-              {" "}
-              aquí
-            </Link>
-          </small>
-        </form>
+            <br />
+          </form>
+          <Link to="/resetPassword" className={classes.link}>
+            {" "}
+            <Typography variant="body2">¿Olvidaste tu contraseña?</Typography>
+          </Link>
+        </Grid>
+        <Grid className={classes.loginFooter}>
+          <Typography variant="body2">
+            ¿Aun no tienes una cuenta en BISCUA?
+          </Typography>
+          <Link to="/signup" className={classes.link}>
+            <Button
+              variant="outlined"
+              color="primary"
+              className={classes.button}
+              fullWidth
+              size="medium"
+            >
+              Regístrate
+            </Button>
+          </Link>
+        </Grid>
       </Grid>
     );
   }

@@ -20,8 +20,9 @@ export const generalTheme = {
     form: {
       textAlign: "center",
       margin: "0 auto",
-      padding: 20,
-      backgroundColor: "white"
+      padding: 0,
+      backgroundColor: "white",
+      boxShadow: "0px 0px 7px 0px rgba(0,0,0,0.2)"
     },
     image: {
       margin: "10px auto 10px auto"

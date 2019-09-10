@@ -2,13 +2,16 @@ import {
   SET_ERRORS,
   CLEAR_ERRORS,
   LOADING_UI,
-  LOADING_UI_GOOGLE
+  LOADING_UI_GOOGLE,
+  SEND_MAIL
 } from "../types";
 
 const initialState = {
   loading: false,
   loadingGoogle: false,
-  errors: null
+  errors: null,
+  send: false,
+  message: null
 };
 
 export default function(state = initialState, action) {
@@ -18,6 +21,12 @@ export default function(state = initialState, action) {
         ...state,
         loading: false,
         errors: action.payload
+      };
+    case SEND_MAIL:
+      return {
+        ...state,
+        send: true,
+        message: action.payload
       };
     case CLEAR_ERRORS:
       return {

@@ -9,6 +9,7 @@ export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const LOADING_DATA = "LOADING_DATA";
 export const LOADING_USER = "LOADING_USER";
 export const LOADING_UI_GOOGLE = "LOADING_UI_GOOGLE";
+export const SEND_MAIL = "SEND_MAIL";
 //Data reducer types
 export const SET_PROJECTS = "SET_PROJECTS";
 export const SET_PROJECT = "SET_PROJECT";
