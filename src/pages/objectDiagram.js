@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 //Components
-import Loader from "../util/Loader";
+import SkeletonComments from "../skeleton/SkeletonComments";
+import SkeletonDiagram from "../skeleton/SkeletonDiagram";
 import ObjectDiagram from "../components/diagram/objectDiagram/index";
 import Comments from "../components/diagram/Comments";
 import CommentForm from "../components/diagram/CommentForm";
@@ -58,10 +59,19 @@ class objectDiagram extends Component {
         type={copyType}
       />
     ) : (
-      <Loader />
+      <SkeletonDiagram />
     );
 
-    let viewComments = !loading ? <Comments comments={comments} /> : <Loader />;
+    let viewComments = !loading ? (
+      <Comments comments={comments} />
+    ) : (
+      <>
+        <SkeletonComments />
+        <SkeletonComments />
+        <SkeletonComments />
+        <SkeletonComments />
+      </>
+    );
     return (
       <Grid container spacing={2}>
         <Grid item sm={3} xs={12}>

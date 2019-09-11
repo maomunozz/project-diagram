@@ -81,6 +81,7 @@ class resetPassword extends Component {
     } = this.props;
     const { errors, send } = this.state;
     console.log(this.state.send);
+    console.log(this.state.email);
     return (
       <Grid
         container
@@ -94,7 +95,7 @@ class resetPassword extends Component {
         justify="center"
         className={classes.form}
       >
-        {!send ? (
+        {!send && errors !== {} ? (
           <>
             <Grid className={classes.loginBody}>
               <Typography variant="h5">¿Olvidaste tu contraseña?</Typography>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
+import SkeletonProject from "../skeleton/SkeletonProject";
 //MUI
 import Grid from "@material-ui/core/Grid";
 import Tabs from "@material-ui/core/Tabs";
@@ -40,6 +40,7 @@ class dashboard extends Component {
     const { classes } = this.props;
     const { projects, loading } = this.props.data;
     const { userId } = this.props.credentials;
+
     let projectsCoordinated = !loading ? (
       projects.map(project =>
         project.projectUserId === userId ? (
@@ -51,7 +52,11 @@ class dashboard extends Component {
         ) : null
       )
     ) : (
-      <p>Loading...</p>
+      <>
+        <SkeletonProject />
+        <SkeletonProject />
+        <SkeletonProject />
+      </>
     );
 
     let projectsObserved = !loading ? (
@@ -65,7 +70,11 @@ class dashboard extends Component {
         ) : null
       )
     ) : (
-      <p>Loading...</p>
+      <>
+        <SkeletonProject />
+        <SkeletonProject />
+        <SkeletonProject />
+      </>
     );
     return (
       <Grid container spacing={2}>

@@ -7,6 +7,7 @@ import locale from "dayjs/locale/es";
 //Components
 import Observer from "./Observer";
 import EditDetailsProject from "./EditDetailsProject";
+import SkeletonProjectData from "../../skeleton/SkeletonProjectData";
 //MUI
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -40,7 +41,6 @@ class ProjectDetails extends Component {
     dayjs.extend(relativeTime);
     const {
       classes,
-      loading,
       project: {
         firstNameUser,
         lastNameUser,
@@ -52,6 +52,7 @@ class ProjectDetails extends Component {
       },
       listDataObservers
     } = this.props;
+    const { loading } = this.props.data;
     const { userId } = this.props.credentials;
 
     let dataProject = !loading ? (
@@ -103,7 +104,7 @@ class ProjectDetails extends Component {
         </div>
       </Paper>
     ) : (
-      <p>loading...</p>
+      <SkeletonProjectData />
     );
 
     return dataProject;
@@ -112,11 +113,13 @@ class ProjectDetails extends Component {
 
 ProjectDetails.propTypes = {
   credentials: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  credentials: state.user.credentials
+  credentials: state.user.credentials,
+  data: state.data
 });
 
 export default connect(mapStateToProps)(withStyles(styles)(ProjectDetails));

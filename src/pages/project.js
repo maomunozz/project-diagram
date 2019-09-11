@@ -12,6 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import ProjectDetails from "../components/project/ProjectDetails";
 import CreateDiagram from "../components/diagram/CreateDiagram";
 import Diagram from "../components/diagram/Diagram";
+import SkeletonProject from "../skeleton/SkeletonProject";
 //Redux
 import { connect } from "react-redux";
 import { getProjectData } from "../redux/actions/dataActions";
@@ -64,7 +65,11 @@ class project extends Component {
         ) : null
       )
     ) : (
-      <p>Loading...</p>
+      <>
+        <SkeletonProject />
+        <SkeletonProject />
+        <SkeletonProject />
+      </>
     );
 
     let interrelationDiagrams = !loading ? (
@@ -80,7 +85,11 @@ class project extends Component {
         ) : null
       )
     ) : (
-      <p>Loading...</p>
+      <>
+        <SkeletonProject />
+        <SkeletonProject />
+        <SkeletonProject />
+      </>
     );
 
     let interactionDiagrams = !loading ? (

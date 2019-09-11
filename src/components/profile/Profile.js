@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import locale from "dayjs/locale/es";
 //Components
 import CustomButton from "../../util/CustomButton";
+import SkeletonProfile from "../../skeleton/SkeletonProfile";
 //MUI
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -103,7 +104,7 @@ class Profile extends Component {
         </div>
       </Paper>
     ) : (
-      <p>loading...</p>
+      <SkeletonProfile />
     );
 
     return profileMarkup;

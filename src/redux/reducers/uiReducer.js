@@ -20,7 +20,8 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        errors: action.payload
+        errors: action.payload,
+        send: false
       };
     case SEND_MAIL:
       return {
