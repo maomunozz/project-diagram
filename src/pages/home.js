@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
-import AppIcon from "../images/biscuaIcono.svg";
+import AppIcon from "../images/logoHome.svg";
 import { Link } from "react-router-dom";
 //MUI
 import Grid from "@material-ui/core/Grid";
@@ -31,7 +31,8 @@ const styles = theme => ({
     margin: "10px auto 10px auto"
   },
   biscuaIcon: {
-    height: "200px"
+    height: "350px",
+    paddingBottom: 20
   }
 });
 
@@ -53,13 +54,6 @@ class home extends Component {
           lg={10}
         >
           <img src={AppIcon} alt="Icon" className={classes.biscuaIcon} />
-          <Typography
-            variant="h4"
-            className={classes.pageTitle}
-            color="primary"
-          >
-            ARQUITECTURA DE INFORMACIÓN
-          </Typography>
           <Typography variant="body1">
             La arquitectura de información es un proceso que permite definir y
             caracterizar todos los elementos que componen una interfaz, Bisqua

@@ -17,9 +17,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-
 //Icons
 import { EyePlus, Folder } from "mdi-material-ui";
+import IconCoordinated from "../../images/coordinador.svg";
+import IconObservador from "../../images/observador.svg";
 //Redux
 import { connect } from "react-redux";
 
@@ -46,6 +47,9 @@ const styles = theme => ({
   },
   iconProject: {
     backgroundColor: theme.palette.primary.light
+  },
+  projectIcon: {
+    width: "40px"
   }
 });
 
@@ -72,11 +76,21 @@ class Project extends Component {
         <List className={classes.root}>
           <ListItem className={classes.item}>
             <ListItemAvatar>
-              {isCoordinated ? (
-                <Avatar alt="avatar" src={userImage} />
+              {!isCoordinated ? (
+                <Avatar className={classes.iconProject}>
+                  <img
+                    src={IconCoordinated}
+                    alt="Icon"
+                    className={classes.projectIcon}
+                  />
+                </Avatar>
               ) : (
                 <Avatar className={classes.iconProject}>
-                  <Folder />
+                  <img
+                    src={IconObservador}
+                    alt="Icon"
+                    className={classes.projectIcon}
+                  />
                 </Avatar>
               )}
             </ListItemAvatar>

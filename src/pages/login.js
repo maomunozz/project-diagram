@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
-import AppIcon from "../images/biscuaIcono.svg";
+import AppIcon from "../images/logoSolo.svg";
 import { Link, Redirect } from "react-router-dom";
 import { GoogleLogin } from "react-google-login";
 //MUI

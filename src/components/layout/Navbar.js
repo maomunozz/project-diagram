@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import AppIcon from "../../images/biscuaIcon3.svg";
+import AppIcon from "../../images/logoNav.svg";
 //Components
 import SignedOutLinks from "./SignedOutLinks";
 import SignedInLinks from "./SignedInLinks";
