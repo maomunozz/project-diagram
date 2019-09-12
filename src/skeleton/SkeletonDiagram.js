@@ -46,7 +46,7 @@ function SkeletonDiagram(props) {
   const { classes } = props;
   return (
     <Paper className={classes.profileContainer}>
-      <Skeleton height="62%" width="6%" />
+      <Skeleton height="62%" width="45px" />
     </Paper>
   );
 }

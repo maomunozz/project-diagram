@@ -17,9 +17,11 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-
 //Icons
-import { Pencil, Note, EyePlus } from "mdi-material-ui";
+import { Pencil, EyePlus } from "mdi-material-ui";
+import ObjectIcon from "../../images/Di_Objetos.svg";
+import InterrelationIcon from "../../images/Di_Interrelaciones.svg";
+import InteractionIcon from "../../images/Di_Interacciones.svg";
 //Redux
 import { connect } from "react-redux";
 
@@ -46,6 +48,9 @@ const styles = theme => ({
   },
   iconProject: {
     backgroundColor: theme.palette.primary.light
+  },
+  objectIcon: {
+    width: "40px"
   }
 });
 
@@ -55,7 +60,7 @@ class Diagram extends Component {
     dayjs.extend(relativeTime);
     const {
       classes,
-      diagram: { diagramName, createdAt, diagramId },
+      diagram: { diagramName, createdAt, diagramId, type },
       user: {
         authenticated,
         credentials: { userId }
@@ -68,14 +73,40 @@ class Diagram extends Component {
       authenticated && projectUserId === userId ? (
         <DeleteDiagram diagramId={diagramId} projectId={projectId} />
       ) : null;
+    let iconDiagram = "";
+    switch (type) {
+      case "1":
+        iconDiagram = (
+          <img src={ObjectIcon} alt="Icon" className={classes.objectIcon} />
+        );
+        break;
+      case "2":
+        iconDiagram = (
+          <img
+            src={InteractionIcon}
+            alt="Icon"
+            className={classes.objectIcon}
+          />
+        );
+        break;
+      case "3":
+        iconDiagram = (
+          <img
+            src={InterrelationIcon}
+            alt="Icon"
+            className={classes.objectIcon}
+          />
+        );
+        break;
+      default:
+        break;
+    }
     return (
       <>
         <List className={classes.root}>
           <ListItem className={classes.item}>
             <ListItemAvatar>
-              <Avatar className={classes.iconProject}>
-                <Note />
-              </Avatar>
+              <Avatar className={classes.iconProject}>{iconDiagram}</Avatar>
             </ListItemAvatar>
             <ListItemText
               primary={diagramName}
