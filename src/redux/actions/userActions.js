@@ -9,6 +9,7 @@ import {
   SEND_MAIL
 } from "../types";
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 
 export const loginUser = (userData, history) => dispatch => {
   dispatch({ type: LOADING_UI });
@@ -17,6 +18,7 @@ export const loginUser = (userData, history) => dispatch => {
     .then(response => {
       setAuthorizationHeader(response.data.token);
       dispatch(getUserData());
+      dispatch(exitApp());
       dispatch({ type: CLEAR_ERRORS });
       history.push("/dashboard");
     })
@@ -35,6 +37,7 @@ export const signupUser = (newUserData, history) => dispatch => {
     .then(response => {
       setAuthorizationHeader(response.data.token);
       dispatch(getUserData());
+      dispatch(exitApp());
       dispatch({ type: CLEAR_ERRORS });
       history.push("/dashboard");
     })
@@ -53,6 +56,7 @@ export const signupUserWhitGoogle = (newUser, history) => dispatch => {
     .then(response => {
       setAuthorizationHeader(response.data.token);
       dispatch(getUserData());
+      dispatch(exitApp());
       dispatch({ type: CLEAR_ERRORS });
       history.push("/dashboard");
     })
@@ -74,6 +78,20 @@ export const getUserData = () => dispatch => {
     .catch(err => console.log(err));
 };
 
+let timeExit = "";
+
+export const exitApp = () => dispatch => {
+  const token = localStorage.FBIdToken;
+  if (token) {
+    const decodedToken = jwtDecode(token);
+    let time = decodedToken.exp * 1000 - Date.now();
+    timeExit = setTimeout(() => {
+      dispatch(logoutUser());
+      alert("Inicia sesión nuevamente para continuar");
+    }, time);
+  }
+};
+
 export const uploadImage = formData => dispatch => {
   dispatch({ type: LOADING_USER });
   axios
@@ -88,6 +106,7 @@ export const logoutUser = () => dispatch => {
   localStorage.removeItem("FBIdToken");
   delete axios.defaults.headers.common["Authorization"];
   dispatch({ type: SET_UNAUTHENTICATED });
+  clearTimeout(timeExit);
 };
 
 export const editUserDetails = userDetails => dispatch => {

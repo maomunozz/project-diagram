@@ -18,7 +18,7 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 //Icons
-import { EyePlus, Folder } from "mdi-material-ui";
+import { EyePlus } from "mdi-material-ui";
 import IconCoordinated from "../../images/coordinador.svg";
 import IconObservador from "../../images/observador.svg";
 //Redux
@@ -59,7 +59,7 @@ class Project extends Component {
     dayjs.extend(relativeTime);
     const {
       classes,
-      project: { title, userImage, description, projectId, projectUserId },
+      project: { title, description, projectId, projectUserId },
       user: {
         authenticated,
         credentials: { userId }
