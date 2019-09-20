@@ -12,6 +12,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Divider from "@material-ui/core/Divider";
+import MenuItem from "@material-ui/core/MenuItem";
 //Redux
 import { connect } from "react-redux";
 import { signupUser, signupUserWhitGoogle } from "../redux/actions/userActions";
@@ -92,6 +93,12 @@ class signup extends Component {
     } = this.props;
     if (authenticated) return <Redirect to="/dashboard" />;
     const { errors } = this.state;
+    const professions = [
+      { value: "Ingeniero de Sistemas", label: "Ingeniero de Sistemas" },
+      { value: "Diseñador", label: "Diseñador" },
+      { value: "Electrónico", label: "Electrónico" }
+    ];
+    console.log(this.state.profession);
     return (
       <Grid
         container
@@ -165,16 +172,27 @@ class signup extends Component {
             <TextField
               id="profession"
               name="profession"
-              type="text"
-              label="Profesión"
-              helperText={errors.profession}
-              error={errors.profession ? true : false}
+              select
+              label="Seleccione su profesión"
               className={classes.textField}
               value={this.state.profession}
               onChange={this.handleChange}
+              SelectProps={{
+                MenuProps: {
+                  className: classes.menu
+                }
+              }}
+              error={errors.profession ? true : false}
+              helperText={errors.profession}
               fullWidth
               variant="outlined"
-            />
+            >
+              {professions.map(option => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
             <TextField
               id="email"
               name="email"

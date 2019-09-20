@@ -8,6 +8,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import MenuItem from "@material-ui/core/MenuItem";
 //Redux
 import { connect } from "react-redux";
 import { editUserDetails } from "../../redux/actions/userActions";
@@ -80,6 +81,11 @@ class EditDetails extends Component {
   }
   render() {
     const { classes } = this.props;
+    const professions = [
+      { value: "Ingeniero de Sistemas", label: "Ingeniero de Sistemas" },
+      { value: "Diseñador", label: "Diseñador" },
+      { value: "Electrónico", label: "Electrónico" }
+    ];
     return (
       <>
         <div onClick={this.handleOpen}>Editar perfil</div>
@@ -115,16 +121,27 @@ class EditDetails extends Component {
                 variant="outlined"
               />
               <TextField
+                id="profession"
                 name="profession"
-                type="text"
-                label="Profesión"
-                placeholder="Ingresa tu profesión"
+                select
+                label="Seleccione su profesión"
                 className={classes.textField}
                 value={this.state.profession}
                 onChange={this.handleChange}
+                SelectProps={{
+                  MenuProps: {
+                    className: classes.menu
+                  }
+                }}
                 fullWidth
                 variant="outlined"
-              />
+              >
+                {professions.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
               <TextField
                 name="location"
                 type="text"
