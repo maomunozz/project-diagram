@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 //Components
 import SkeletonComments from "../skeleton/SkeletonComments";
 import SkeletonDiagram from "../skeleton/SkeletonDiagram";
+import SkeletonName from "../skeleton/SkeletonName";
 import ObjectDiagram from "../components/diagram/objectDiagram/index";
 import Comments from "../components/diagram/Comments";
 import CommentForm from "../components/diagram/CommentForm";
@@ -10,6 +11,7 @@ import CommentForm from "../components/diagram/CommentForm";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import withStyles from "@material-ui/core/styles/withStyles";
+import Typography from "@material-ui/core/Typography";
 //Redux
 import { getDiagramData } from "../redux/actions/dataActions";
 import { connect } from "react-redux";
@@ -18,6 +20,12 @@ const styles = theme => ({
   ...theme.profileTheme,
   paperComments: {
     padding: 10
+  },
+  nameDiagram: {
+    color: theme.palette.primary.main
+  },
+  typeDiagram: {
+    color: theme.palette.primary.main
   }
 });
 
@@ -38,7 +46,7 @@ class objectDiagram extends Component {
     const projectId = this.props.match.params.projectId;
     const diagramId = this.props.match.params.diagramId;
     const {
-      diagram: { diagram, diagramUserId, comments, type },
+      diagram: { diagram, diagramUserId, comments, type, diagramName },
       loading
     } = this.props.data;
     const { classes } = this.props;
@@ -72,10 +80,39 @@ class objectDiagram extends Component {
         <SkeletonComments />
       </>
     );
+    let tipo = "";
+    switch (type) {
+      case "1":
+        tipo = "Objeto/Acciones";
+        break;
+      case "3":
+        tipo = "Interacciones/Intra-acciones";
+        break;
+      case "2":
+        tipo = "Interrelaciones/reacciones";
+        break;
+      default:
+        tipo = "Diagrama";
+        break;
+    }
+    let nameComments = !loading ? (
+      <>
+        <Typography variant="h6">
+          <span className={classes.nameDiagram}>Nombre:</span> {diagramName}
+        </Typography>
+        <Typography variant="body1">
+          <span className={classes.typeDiagram}>Tipo:</span> {tipo}
+        </Typography>
+      </>
+    ) : (
+      <SkeletonName />
+    );
+
     return (
       <Grid container spacing={2}>
         <Grid item sm={3} xs={12}>
           <Paper className={classes.paperComments}>
+            {nameComments}
             <CommentForm diagramId={diagramId} projectId={projectId} />
             {viewComments}
           </Paper>

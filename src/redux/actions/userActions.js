@@ -6,7 +6,8 @@ import {
   SET_UNAUTHENTICATED,
   LOADING_USER,
   LOADING_UI_GOOGLE,
-  SEND_MAIL
+  SEND_MAIL,
+  MARK_NOTIFICATIONS_READ
 } from "../types";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
@@ -141,5 +142,18 @@ export const passwordReset = userData => dispatch => {
         type: SET_ERRORS,
         payload: err.response.data
       });
+    });
+};
+
+export const markNotificationsRead = notificationsIds => dispatch => {
+  axios
+    .post("/notifications", notificationsIds)
+    .then(response => {
+      dispatch({
+        type: MARK_NOTIFICATIONS_READ
+      });
+    })
+    .catch(err => {
+      console.log(err);
     });
 };

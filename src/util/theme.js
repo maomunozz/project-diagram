@@ -52,14 +52,15 @@ export const generalTheme = {
       marginTop: 20,
       position: "relative",
       marginBottom: 10,
-      color: "#000",
-      backgroundColor: "#e53935",
+      color: "#fff",
+      backgroundColor: "#E46154",
       "&:hover": {
-        backgroundColor: "#ab000d"
+        backgroundColor: "#9f433a"
       }
     },
     iconGoogle: {
-      marginRight: 10
+      marginRight: 10,
+      height: "30px"
     },
     divider: {
       //backgroundColor: "black",

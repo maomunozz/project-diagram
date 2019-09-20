@@ -9,6 +9,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
+import LogoUnivalle from "../../images/Univalle.svg";
 
 const styles = theme => ({
   ...theme.formTheme,
@@ -35,6 +36,9 @@ const styles = theme => ({
   },
   teacher: {
     marginBottom: 10
+  },
+  univalleIcon: {
+    height: "40px"
   }
 });
 
@@ -144,6 +148,11 @@ class Footer extends Component {
             </div>
             <div className={classes.subtitle}>
               <Typography variant="h6">
+                <img
+                  src={LogoUnivalle}
+                  alt="Icon"
+                  className={classes.univalleIcon}
+                />{" "}
                 Vicerrectoría Universidad del Valle
               </Typography>
             </div>

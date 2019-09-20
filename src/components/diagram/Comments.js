@@ -52,19 +52,11 @@ class Comments extends Component {
       <>
         <List className={classes.root} dense>
           {listComments.map(comment => {
-            const {
-              body,
-              createdAt,
-              commentId,
-              userImage,
-              firstNameUser
-            } = comment;
-
             return (
-              <div key={commentId}>
+              <div key={comment.commentId}>
                 <ListItem className={classes.listItem}>
                   <ListItemAvatar>
-                    <Avatar alt="avatar" src={userImage} />
+                    <Avatar alt="avatar" src={comment.userImage} />
                   </ListItemAvatar>
                   <ListItemText
                     primary={
@@ -74,16 +66,16 @@ class Comments extends Component {
                           variant="body2"
                           color="primary"
                         >
-                          {`${firstNameUser} `}
+                          {`${comment.firstNameUser} `}
                         </Typography>
                         <Typography component="span" variant="body2">
-                          {`${body} - `}
+                          {`${comment.body} - `}
                         </Typography>
                       </>
                     }
                     secondary={
                       <Typography component="span" variant="caption">
-                        {dayjs(createdAt).fromNow()}
+                        {dayjs(comment.createdAt).fromNow()}
                       </Typography>
                     }
                   />

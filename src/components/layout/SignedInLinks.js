@@ -12,13 +12,9 @@ import Typography from "@material-ui/core/Typography";
 //Components
 import CustomButton from "../../util/CustomButton";
 import EditDetails from "../profile/EditDetails";
+import Notifications from "./Notifications";
 //Icons
-import {
-  AccountEdit,
-  LogoutVariant,
-  ViewDashboard,
-  Bell
-} from "mdi-material-ui";
+import { AccountEdit, LogoutVariant, ViewDashboard } from "mdi-material-ui";
 //Redux
 import { connect } from "react-redux";
 import { logoutUser } from "../../redux/actions/userActions";
@@ -29,7 +25,8 @@ const styles = theme => ({
     color: "#fff"
   },
   avatarTitle: {
-    display: "inline-flex"
+    display: "inline-flex",
+    marginLeft: 10
   },
   logout: {
     color: "black"
@@ -66,9 +63,7 @@ const SignedInLinks = props => {
             <ViewDashboard className={classes.colorIcon} />
           </CustomButton>
         </Link>
-        <CustomButton tip="Notificaciones">
-          <Bell className={classes.colorIcon} />
-        </CustomButton>
+        <Notifications />
         <Typography variant="inherit" className={classes.avatarTitle}>
           {firstName}
         </Typography>
