@@ -7,6 +7,9 @@ import SkeletonName from "../skeleton/SkeletonName";
 import ObjectDiagram from "../components/diagram/objectDiagram/index";
 import Comments from "../components/diagram/Comments";
 import CommentForm from "../components/diagram/CommentForm";
+//NEW
+import Graph from "../components/diagram/Playground"
+
 //MUI
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -118,7 +121,9 @@ class objectDiagram extends Component {
           </Paper>
         </Grid>
         <Grid item sm={9} xs={12}>
-          {viewDiagram}
+          <Graph></Graph>
+        </Grid>
+        <Grid item sm={9} xs={12}>
         </Grid>
       </Grid>
     );
