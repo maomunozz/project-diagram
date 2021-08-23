@@ -8,7 +8,7 @@ import ObjectDiagram from "../components/diagram/objectDiagram/index";
 import Comments from "../components/diagram/Comments";
 import CommentForm from "../components/diagram/CommentForm";
 //NEW
-import Graph from "../components/diagram/Playground"
+import Graph from "../components/diagramJointjs/index"
 
 //MUI
 import Grid from "@material-ui/core/Grid";
@@ -122,8 +122,6 @@ class objectDiagram extends Component {
         </Grid>
         <Grid item sm={9} xs={12}>
           <Graph></Graph>
-        </Grid>
-        <Grid item sm={9} xs={12}>
         </Grid>
       </Grid>
     );
