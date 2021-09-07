@@ -4,11 +4,10 @@ import PropTypes from "prop-types";
 import SkeletonComments from "../skeleton/SkeletonComments";
 import SkeletonDiagram from "../skeleton/SkeletonDiagram";
 import SkeletonName from "../skeleton/SkeletonName";
-import ObjectDiagram from "../components/diagram/objectDiagram/index";
 import Comments from "../components/diagram/Comments";
 import CommentForm from "../components/diagram/CommentForm";
 //NEW
-import Graph from "../components/diagramJointjs/index"
+import Graph from "../components/diagram/diagramJointjs/diagram"
 
 //MUI
 import Grid from "@material-ui/core/Grid";
@@ -62,7 +61,7 @@ class objectDiagram extends Component {
       copyType = type;
     }
     let viewDiagram = !loading ? (
-      <ObjectDiagram
+      <Graph
         projectId={projectId}
         diagramId={diagramId}
         diagram={copyDiagram}
@@ -121,7 +120,7 @@ class objectDiagram extends Component {
           </Paper>
         </Grid>
         <Grid item sm={9} xs={12}>
-          <Graph></Graph>
+          {viewDiagram}
         </Grid>
       </Grid>
     );
