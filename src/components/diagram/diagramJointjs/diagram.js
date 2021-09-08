@@ -9,6 +9,7 @@ import Panel from './panel'
 import {listOfActions} from './config-panel'
 
 import Hardware from './hardware/figure';
+import Passive from './passive/figure';
 
 import ObjectModal from './hardware/component';
 
@@ -251,6 +252,9 @@ class Graph extends React.Component {
         switch (type) {
             case "hardware":
                 figure = Hardware()
+              break;
+            case "passive":
+                figure = Passive()
               break;
             case "out":
                 this.zoomOut()
