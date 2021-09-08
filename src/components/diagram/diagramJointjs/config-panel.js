@@ -3,6 +3,7 @@ import zoomOutIcon from "./zoom-out/icon";
 import Hardware from "./hardware/icon";
 import Passive from "./passive/icon";
 import Multimedia from "./multimedia/icon";
+import Action from "./action/icon";
 
 const listOfActions = [    
     {
@@ -22,8 +23,12 @@ const listOfActions = [
         action: 'passive',
     },
     {
-      icon: Multimedia(),
-      action: 'multimedia',
+        icon: Multimedia(),
+        action: 'multimedia',
+    },
+    {
+        icon: Action(),
+        action: 'action',
     }
 ]
 

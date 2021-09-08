@@ -10,9 +10,13 @@ import {listOfActions} from './config-panel'
 
 import Hardware from './hardware/figure';
 import Passive from './passive/figure';
-import Multimedia from './passive/figure';
+import Multimedia from './multimedia/figure';
+import Action from './action/figure';
 
 import ObjectModal from './hardware/component';
+import ActionModal from './action/component';
+import AttributeModal from './attribute/component';
+import ChipIconsAction from './action/chipIconsAction'
 
 // Css files
 import "jointjs/dist/joint.css";
@@ -260,6 +264,9 @@ class Graph extends React.Component {
             case "multimedia":
                 figure = Multimedia()
               break;
+            case "action":
+                figure = Action()
+              break;
             case "out":
                 this.zoomOut()
               break;
@@ -302,7 +309,7 @@ class Graph extends React.Component {
           });
     };
 
-    /**
+
     handleClick =( event, data) => {
         event.preventDefault();
 
@@ -315,7 +322,7 @@ class Graph extends React.Component {
             op: false,
         });
     };
-    */
+
     handleOpenObject = () => {
         this.setState({
           op2: true
@@ -390,11 +397,12 @@ class Graph extends React.Component {
             <div className={classes.root}>
                 <Panel listOfActions={listOfActions} action={this.addFigure}  />
                 <div id="playground" ref="placeholder" ></div>
+                <ActionModal open={this.state.op} handleOpen={this.handleOpen} handleClose={this.handleClose} handleClick={this.handleClick}></ActionModal>
                 <ObjectModal open={this.state.op2} handleOpen={this.handleOpenObject} handleClose={this.handleCloseObject} handleClick={this.handleClickObject} nameObject={this.state.nameObject}></ObjectModal>
+                <AttributeModal open={this.state.op3} handleOpen={this.handleOpenAttribute} handleClose={this.handleCloseAttribute} handleClick={this.handleClickAttribute} handleChange={this.handleChange}  attribute={this.state.attribute} value={this.state.value}></AttributeModal>
             </div>
         );
     }
-    
 }
 
 Graph.propTypes = {
