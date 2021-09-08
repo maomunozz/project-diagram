@@ -10,6 +10,7 @@ import {listOfActions} from './config-panel'
 
 import Hardware from './hardware/figure';
 import Passive from './passive/figure';
+import Multimedia from './passive/figure';
 
 import ObjectModal from './hardware/component';
 
@@ -255,6 +256,9 @@ class Graph extends React.Component {
               break;
             case "passive":
                 figure = Passive()
+              break;
+            case "multimedia":
+                figure = Multimedia()
               break;
             case "out":
                 this.zoomOut()
