@@ -4,6 +4,7 @@ import Hardware from "./hardware/icon";
 import Passive from "./passive/icon";
 import Multimedia from "./multimedia/icon";
 import Action from "./action/icon";
+import Attribute from "./attribute/icon";
 
 const listOfActions = [    
     {
@@ -29,6 +30,10 @@ const listOfActions = [
     {
         icon: Action(),
         action: 'action',
+    },
+    {
+        icon: Attribute(),
+        action: 'attribute',
     }
 ]
 

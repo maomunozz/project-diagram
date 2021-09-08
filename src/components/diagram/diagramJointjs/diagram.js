@@ -12,6 +12,7 @@ import Hardware from './hardware/figure';
 import Passive from './passive/figure';
 import Multimedia from './multimedia/figure';
 import Action from './action/figure';
+import Attribute from './attribute/figure';
 
 import ObjectModal from './hardware/component';
 import ActionModal from './action/component';
@@ -266,6 +267,9 @@ class Graph extends React.Component {
               break;
             case "action":
                 figure = Action()
+              break;
+            case "attribute":
+                figure = Attribute()
               break;
             case "out":
                 this.zoomOut()
